@@ -164,12 +164,11 @@ seu-projeto/
 
 Edite uma vez em `ai-dev-flow/prompts/`, todos os assistentes ficam sincronizados:
 
-```
-ai-dev-flow/prompts/flow-prd.md        Fonte unica
-        |
-.github/prompts/flow-prd.prompt.md     "Leia ai-dev-flow/prompts/flow-prd.md"
-.agent/workflows/flow-prd.md            "Leia ai-dev-flow/prompts/flow-prd.md"
-.claude/commands/flow-prd.md             "Leia ai-dev-flow/prompts/flow-prd.md"
+```mermaid
+graph TD
+    S["ai-dev-flow/prompts/flow-prd.md"] -->|le| C1[".github/prompts/ — Copilot"]
+    S -->|le| C2[".agent/workflows/ — Cursor"]
+    S -->|le| C3[".claude/commands/ — Claude Code"]
 ```
 
 ---
