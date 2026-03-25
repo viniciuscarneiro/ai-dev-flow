@@ -62,18 +62,18 @@ It's not a framework, not a CLI tool, not a SaaS. It's a set of files you copy i
 
 ```mermaid
 graph TD
-    A[Requirement] --> B[/flow-prd]
-    B --> C[/flow-rfc]
-    C --> D[/flow-ta]
-    D --> E[/flow-code]
-    E --> F{/flow-review}
-    F -- Pass --> G[/flow-doc]
+    A[Requirement] --> B["flow-prd"]
+    B --> C["flow-rfc"]
+    C --> D["flow-ta"]
+    D --> E["flow-code"]
+    E --> F{"flow-review"}
+    F -- Pass --> G["flow-doc"]
     F -- Fail --> E
-    G --> H{/flow-done}
-    H -- Go --> I([Ship!])
+    G --> H{"flow-done"}
+    H -- Go --> I(["Ship!"])
     H -- No-Go --> E
 
-    J[Bug] --> K[/flow-debug]
+    J[Bug] --> K["flow-debug"]
     K -- Fix needed --> E
 ```
 

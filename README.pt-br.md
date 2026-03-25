@@ -62,18 +62,18 @@ Nao e um framework, nao e um CLI, nao e um SaaS. E um conjunto de arquivos que v
 
 ```mermaid
 graph TD
-    A[Requisito] --> B[/flow-prd]
-    B --> C[/flow-rfc]
-    C --> D[/flow-ta]
-    D --> E[/flow-code]
-    E --> F{/flow-review}
-    F -- Aprovado --> G[/flow-doc]
+    A[Requisito] --> B["flow-prd"]
+    B --> C["flow-rfc"]
+    C --> D["flow-ta"]
+    D --> E["flow-code"]
+    E --> F{"flow-review"}
+    F -- Aprovado --> G["flow-doc"]
     F -- Reprovado --> E
-    G --> H{/flow-done}
-    H -- Go --> I([Ship!])
+    G --> H{"flow-done"}
+    H -- Go --> I(["Ship!"])
     H -- No-Go --> E
 
-    J[Bug] --> K[/flow-debug]
+    J[Bug] --> K["flow-debug"]
     K -- Fix necessario --> E
 ```
 
