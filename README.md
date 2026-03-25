@@ -12,7 +12,7 @@
 [![Cursor](https://img.shields.io/badge/Cursor-supported-blue)](https://cursor.sh)
 [![Claude Code](https://img.shields.io/badge/Claude%20Code-supported-blue)](https://claude.ai)
 
-[Getting Started](#-getting-started) · [The Flow](#-the-flow) · [How It Works](#-how-it-works) · [Playbook](ai-dev-flow/PLAYBOOK.md) · [Portugu&ecirc;s](README.pt-br.md)
+[Getting Started](#getting-started) · [The Flow](#the-flow) · [How It Works](#how-it-works) · [Playbook](ai-dev-flow/PLAYBOOK.md) · [Portugu&ecirc;s](README.pt-br.md)
 
 </div>
 
@@ -20,7 +20,7 @@
 
 ## The Problem
 
-AI coding assistants are powerful — but without structure, they produce inconsistent, untraceable, and unreviewable output. Teams end up with:
+AI coding assistants are powerful, but without structure they produce inconsistent, untraceable, and unreviewable output. Teams end up with:
 
 - PRDs that lack clarity and acceptance criteria
 - Architecture decisions made in chat and lost forever
@@ -29,7 +29,7 @@ AI coding assistants are powerful — but without structure, they produce incons
 - Documentation that's outdated the day it's written
 - No clear definition of "done"
 
-**AI Dev Flow solves this** by giving your AI assistant a complete methodology — from product requirements to production readiness.
+**AI Dev Flow solves this** by giving your AI assistant a complete methodology, from product requirements to production readiness.
 
 ---
 
@@ -41,39 +41,40 @@ AI Dev Flow is a **methodology kit** that plugs into your existing project. It p
 - **Shared prompts** that work across GitHub Copilot, Cursor, and Claude Code
 - **A knowledge base** structure where your AI reads project guidelines, ADRs, and architecture docs
 - **Work artifacts** that create a traceable paper trail from PRD to production
-- **Engineering best practices** baked into every step — SOLID, Clean Architecture, DDD, OWASP, TDD
+- **Engineering best practices** baked into every step (SOLID, Clean Architecture, DDD, OWASP, TDD)
 
-It's **not a framework**, **not a CLI tool**, **not a SaaS**. It's a set of files you copy into your project. Zero dependencies. Zero lock-in.
+It's not a framework, not a CLI tool, not a SaaS. It's a set of files you copy into your project. Zero dependencies. Zero lock-in.
 
 ---
 
 ## The Flow
 
 ```
-/flow-prd     → Define what to build      (Product Requirements + Definition of Done)
-/flow-rfc     → Choose how to build it    (Alternatives, Decision Matrix, Recommendation)
-/flow-ta      → Design the details        (Engineering Assessment, BDD, Implementation Plan)
-/flow-code    → Build it                  (TDD, Full-cycle: migrations, config, observability)
-/flow-review  → Validate it              (11-dimension review, OWASP 2025, DoD check)
-/flow-doc     → Document it              (ADRs, C4 Architecture, Living Documentation)
-/flow-done    → Ship it                  (Production Readiness, Retrospective, Go/No-Go)
-/flow-debug   → Fix it                   (Parallel — anytime, systematic investigation)
+/flow-prd      Define what to build       Product Requirements + Definition of Done
+/flow-rfc      Choose how to build it     Alternatives, Decision Matrix, Recommendation
+/flow-ta       Design the details         Engineering Assessment, BDD, Implementation Plan
+/flow-code     Build it                   TDD, Full-cycle: migrations, config, observability
+/flow-review   Validate it               11-dimension review, OWASP 2025, DoD check
+/flow-doc      Document it               ADRs, C4 Architecture, Living Documentation
+/flow-done     Ship it                   Production Readiness, Retrospective, Go/No-Go
+/flow-debug    Fix it                    Parallel, anytime, systematic investigation
 ```
 
 ```mermaid
-graph LR
-    A[Requirement] --> B["/flow-prd"]
-    B --> C["/flow-rfc"]
-    C --> D["/flow-ta"]
-    D --> E["/flow-code"]
-    E --> F["/flow-review"]
-    F -->|Pass| G["/flow-doc"]
-    F -->|Fail| E
-    G --> H["/flow-done"]
-    H -->|Go| I["Ship!"]
-    H -->|No-Go| E
-    J[Bug] --> K["/flow-debug"]
-    K -->|Fix needed| E
+graph TD
+    A[Requirement] --> B[/flow-prd]
+    B --> C[/flow-rfc]
+    C --> D[/flow-ta]
+    D --> E[/flow-code]
+    E --> F{/flow-review}
+    F -- Pass --> G[/flow-doc]
+    F -- Fail --> E
+    G --> H{/flow-done}
+    H -- Go --> I([Ship!])
+    H -- No-Go --> E
+
+    J[Bug] --> K[/flow-debug]
+    K -- Fix needed --> E
 ```
 
 ---
@@ -84,13 +85,13 @@ graph LR
 
 ```bash
 # Clone the repo
-git clone https://github.com/YOUR_USERNAME/ai-dev-flow.git /tmp/ai-dev-flow
+git clone https://github.com/viniciuscarneiro/ai-dev-flow.git /tmp/ai-dev-flow
 
 # Install into your project (never overwrites existing files)
 /tmp/ai-dev-flow/setup.sh /path/to/your/project
 
 # Or one-liner
-git clone https://github.com/YOUR_USERNAME/ai-dev-flow.git /tmp/ai-dev-flow && /tmp/ai-dev-flow/setup.sh .
+git clone https://github.com/viniciuscarneiro/ai-dev-flow.git /tmp/ai-dev-flow && /tmp/ai-dev-flow/setup.sh .
 ```
 
 The setup script copies **42 files** into your project:
@@ -101,7 +102,7 @@ The setup script copies **42 files** into your project:
 - Playbook (operating manual)
 - Work directories for artifacts
 
-**It never overwrites.** Run it again safely — it only creates what's missing.
+**It never overwrites.** Run it again safely, it only creates what's missing.
 
 ### Seed Your Knowledge Base (Recommended)
 
@@ -109,11 +110,11 @@ The AI produces better output when it knows your project. Copy existing docs:
 
 ```
 ai-dev-flow/knowledge/
-├── guidelines/     ← Your coding standards, naming conventions, patterns
-├── adrs/           ← Your architectural decisions
-├── architecture/   ← Your system diagrams and overview
-├── prds/           ← Your completed PRDs
-└── assessments/    ← Your completed tech assessments
+├── guidelines/     Your coding standards, naming conventions, patterns
+├── adrs/           Your architectural decisions
+├── architecture/   Your system diagrams and overview
+├── prds/           Your completed PRDs
+└── assessments/    Your completed tech assessments
 ```
 
 Each folder has a `_template.md` showing the expected format.
@@ -141,22 +142,22 @@ The AI will:
 
 ```
 your-project/
-├── ai-dev-flow/                    ← Everything lives here
-│   ├── PLAYBOOK.md                 ← Operating manual
-│   ├── prompts/                    ← Source of truth (8 prompts)
-│   ├── knowledge/                  ← Your project's brain
-│   │   ├── guidelines/             ← Standards the AI follows
-│   │   ├── adrs/                   ← Decisions the AI respects
-│   │   ├── architecture/           ← System context the AI reads
-│   │   ├── prds/                   ← Completed PRDs for reference
-│   │   └── assessments/            ← Completed TAs for reference
-│   └── work/                       ← AI-generated artifacts
-│       ├── specs/                  ← Active PRDs, RFCs, TAs
-│       └── drafts/                 ← Documentation drafts, debug reports
+├── ai-dev-flow/                    Everything lives here
+│   ├── PLAYBOOK.md                 Operating manual
+│   ├── prompts/                    Source of truth (8 prompts)
+│   ├── knowledge/                  Your project's brain
+│   │   ├── guidelines/             Standards the AI follows
+│   │   ├── adrs/                   Decisions the AI respects
+│   │   ├── architecture/           System context the AI reads
+│   │   ├── prds/                   Completed PRDs for reference
+│   │   └── assessments/            Completed TAs for reference
+│   └── work/                       AI-generated artifacts
+│       ├── specs/                  Active PRDs, RFCs, TAs
+│       └── drafts/                 Documentation drafts, debug reports
 │
-├── .github/prompts/                ← GitHub Copilot wrappers
-├── .agent/workflows/               ← Cursor wrappers
-└── .claude/commands/               ← Claude Code wrappers
+├── .github/prompts/                GitHub Copilot wrappers
+├── .agent/workflows/               Cursor wrappers
+└── .claude/commands/               Claude Code wrappers
 ```
 
 ### One Prompt, Three Assistants
@@ -164,26 +165,26 @@ your-project/
 Edit once in `ai-dev-flow/prompts/`, all assistants stay in sync:
 
 ```
-ai-dev-flow/prompts/flow-prd.md      ← Source of truth
-        ↓
-.github/prompts/flow-prd.prompt.md   → "Read ai-dev-flow/prompts/flow-prd.md"
-.agent/workflows/flow-prd.md         → "Read ai-dev-flow/prompts/flow-prd.md"
-.claude/commands/flow-prd.md         → "Read ai-dev-flow/prompts/flow-prd.md"
+ai-dev-flow/prompts/flow-prd.md        Source of truth
+        |
+.github/prompts/flow-prd.prompt.md     "Read ai-dev-flow/prompts/flow-prd.md"
+.agent/workflows/flow-prd.md            "Read ai-dev-flow/prompts/flow-prd.md"
+.claude/commands/flow-prd.md             "Read ai-dev-flow/prompts/flow-prd.md"
 ```
 
 ### Knowledge Flow
 
-Artifacts have a lifecycle — from volatile work to permanent knowledge:
+Artifacts have a lifecycle, from volatile work to permanent knowledge:
 
 ```
-/flow-prd generates  →  work/specs/feature_prd.md
-                              ↓ (feature shipped + /flow-done approved)
-                         knowledge/prds/feature_prd.md
+/flow-prd generates     work/specs/feature_prd.md
+                            |  (feature shipped + /flow-done approved)
+                        knowledge/prds/feature_prd.md
 
-/flow-doc generates  →  work/drafts/feature_doc.md
-                              ↓ (user approves promotion)
-                         knowledge/adrs/015-decision.md
-                         knowledge/architecture/module.md
+/flow-doc generates     work/drafts/feature_doc.md
+                            |  (user approves promotion)
+                        knowledge/adrs/015-decision.md
+                        knowledge/architecture/module.md
 ```
 
 ---
@@ -207,7 +208,7 @@ Artifacts have a lifecycle — from volatile work to permanent knowledge:
 
 Every prompt is grounded in proven engineering practices:
 
-- **Product**: Amazon Working Backwards, MoSCoW prioritization, User & Job Stories
+- **Product**: Amazon Working Backwards, MoSCoW prioritization, User and Job Stories
 - **Architecture**: Clean Architecture, Hexagonal, DDD, SOLID
 - **Security**: OWASP Top 10:2025 (updated with Supply Chain at #3, Exceptional Conditions at #10)
 - **Code Quality**: Clean Code (Martin), Design Patterns (GoF), Code Smells
@@ -278,14 +279,16 @@ Contributions are welcome! Whether it's improving prompts, adding new knowledge 
 
 ## License
 
-[MIT](LICENSE) — Use it, modify it, share it. Free forever.
+[MIT](LICENSE)
 
 ---
 
 <div align="center">
 
-**AI Dev Flow** — Stop prompting. Start engineering.
+**AI Dev Flow**
 
-[Star this repo](https://github.com/YOUR_USERNAME/ai-dev-flow) if it helps your team ship better software with AI.
+Stop prompting. Start engineering.
+
+[Star this repo](https://github.com/viniciuscarneiro/ai-dev-flow) if it helps your team ship better software with AI.
 
 </div>
