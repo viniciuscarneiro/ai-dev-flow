@@ -1,0 +1,12 @@
+# AI Dev Flow — Code Owners
+# These owners are required reviewers for PRs touching their areas.
+# https://docs.github.com/en/repositories/managing-your-repositorys-settings-and-features/customizing-your-repository/about-code-owners
+
+# Default: you review everything
+* @viniciuscarneiro
+
+# Prompts: core methodology — extra attention
+ai-dev-flow/prompts/ @viniciuscarneiro
+
+# Knowledge base: project standards
+ai-dev-flow/knowledge/ @viniciuscarneiro
