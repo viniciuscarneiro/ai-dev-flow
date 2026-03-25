@@ -171,6 +171,20 @@ graph TD
     S -->|le| C3[".claude/commands/ — Claude Code"]
 ```
 
+### Fluxo de Conhecimento
+
+Artefatos tem um ciclo de vida, de trabalho volatil a conhecimento permanente:
+
+```mermaid
+graph LR
+    A["flow-prd gera"] --> B["work/specs/feature_prd.md"]
+    B -->|"feature entregue"| C["knowledge/prds/feature_prd.md"]
+
+    D["flow-doc gera"] --> E["work/drafts/feature_doc.md"]
+    E -->|"usuario aprova"| F["knowledge/adrs/"]
+    E -->|"usuario aprova"| G["knowledge/architecture/"]
+```
+
 ---
 
 ## O que tem em cada Etapa
