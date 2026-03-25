@@ -233,20 +233,35 @@ All three use the same prompts. Switch assistants or IDEs without changing anyth
 
 ## FAQ
 
-**Q: Do I need to follow all 8 steps for every feature?**
-No. A 3-line bug fix can go straight to `/flow-debug` → `/flow-code` → `/flow-review`. The full cycle is for significant features. Scale the ceremony to the risk.
+<details>
+<summary><strong>Do I need to follow all 8 steps for every feature?</strong></summary>
+<br>
+No. A 3-line bug fix can go straight to <code>/flow-debug</code> > <code>/flow-code</code> > <code>/flow-review</code>. The full cycle is for significant features. Scale the ceremony to the risk.
+</details>
 
-**Q: Does this work with my tech stack?**
-Yes. The prompts are tech-agnostic — they work with any language, framework, or architecture. The AI adapts to your project by reading `knowledge/guidelines/`.
+<details>
+<summary><strong>Does this work with my tech stack?</strong></summary>
+<br>
+Yes. The prompts are tech-agnostic. They work with any language, framework, or architecture. The AI adapts to your project by reading <code>knowledge/guidelines/</code>.
+</details>
 
-**Q: What if my team already has a process?**
-AI Dev Flow complements existing processes. You can adopt individual steps (e.g., just `/flow-review` for better code reviews) without the full cycle.
+<details>
+<summary><strong>What if my team already has a process?</strong></summary>
+<br>
+AI Dev Flow complements existing processes. You can adopt individual steps (e.g., just <code>/flow-review</code> for better code reviews) without the full cycle.
+</details>
 
-**Q: Can I customize the prompts?**
-Absolutely. The prompts in `ai-dev-flow/prompts/` are plain Markdown files. Edit them to match your team's needs.
+<details>
+<summary><strong>Can I customize the prompts?</strong></summary>
+<br>
+Absolutely. The prompts in <code>ai-dev-flow/prompts/</code> are plain Markdown files. Edit them to match your team's needs.
+</details>
 
-**Q: Does the setup script modify my existing files?**
+<details>
+<summary><strong>Does the setup script modify my existing files?</strong></summary>
+<br>
 Never. It only creates new files. If a file already exists, it skips it.
+</details>
 
 ---
 

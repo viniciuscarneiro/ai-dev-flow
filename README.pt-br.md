@@ -218,20 +218,35 @@ Todos usam os mesmos prompts. Troque de assistente ou IDE sem mudar nada.
 
 ## FAQ
 
-**P: Preciso seguir todas as 8 etapas pra cada feature?**
-Não. Um bug fix de 3 linhas pode ir direto pra `/flow-debug` → `/flow-code` → `/flow-review`. O ciclo completo é pra features significativas. Escale a cerimônia ao risco.
+<details>
+<summary><strong>Preciso seguir todas as 8 etapas pra cada feature?</strong></summary>
+<br>
+Não. Um bug fix de 3 linhas pode ir direto pra <code>/flow-debug</code> > <code>/flow-code</code> > <code>/flow-review</code>. O ciclo completo é pra features significativas. Escale a cerimônia ao risco.
+</details>
 
-**P: Funciona com minha stack?**
-Sim. Os prompts são tech-agnostic — funcionam com qualquer linguagem, framework ou arquitetura. A IA se adapta ao seu projeto lendo `knowledge/guidelines/`.
+<details>
+<summary><strong>Funciona com minha stack?</strong></summary>
+<br>
+Sim. Os prompts são tech-agnostic. Funcionam com qualquer linguagem, framework ou arquitetura. A IA se adapta ao seu projeto lendo <code>knowledge/guidelines/</code>.
+</details>
 
-**P: E se meu time já tem um processo?**
-AI Dev Flow complementa processos existentes. Você pode adotar etapas individuais (ex: só `/flow-review` pra melhorar code reviews) sem o ciclo completo.
+<details>
+<summary><strong>E se meu time já tem um processo?</strong></summary>
+<br>
+AI Dev Flow complementa processos existentes. Você pode adotar etapas individuais (ex: só <code>/flow-review</code> pra melhorar code reviews) sem o ciclo completo.
+</details>
 
-**P: Posso customizar os prompts?**
-Claro. Os prompts em `ai-dev-flow/prompts/` são arquivos Markdown. Edite pra atender as necessidades do seu time.
+<details>
+<summary><strong>Posso customizar os prompts?</strong></summary>
+<br>
+Claro. Os prompts em <code>ai-dev-flow/prompts/</code> são arquivos Markdown. Edite pra atender as necessidades do seu time.
+</details>
 
-**P: O setup.sh modifica meus arquivos existentes?**
+<details>
+<summary><strong>O setup.sh modifica meus arquivos existentes?</strong></summary>
+<br>
 Nunca. Ele só cria arquivos novos. Se um arquivo já existe, pula.
+</details>
 
 ---
 
