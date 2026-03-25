@@ -164,27 +164,25 @@ your-project/
 
 Edit once in `ai-dev-flow/prompts/`, all assistants stay in sync:
 
-```
-ai-dev-flow/prompts/flow-prd.md        Source of truth
-        |
-.github/prompts/flow-prd.prompt.md     "Read ai-dev-flow/prompts/flow-prd.md"
-.agent/workflows/flow-prd.md            "Read ai-dev-flow/prompts/flow-prd.md"
-.claude/commands/flow-prd.md             "Read ai-dev-flow/prompts/flow-prd.md"
+```mermaid
+graph TD
+    S["ai-dev-flow/prompts/flow-prd.md"] -->|reads| C1[".github/prompts/ — Copilot"]
+    S -->|reads| C2[".agent/workflows/ — Cursor"]
+    S -->|reads| C3[".claude/commands/ — Claude Code"]
 ```
 
 ### Knowledge Flow
 
 Artifacts have a lifecycle, from volatile work to permanent knowledge:
 
-```
-/flow-prd generates     work/specs/feature_prd.md
-                            |  (feature shipped + /flow-done approved)
-                        knowledge/prds/feature_prd.md
+```mermaid
+graph LR
+    A["flow-prd generates"] --> B["work/specs/feature_prd.md"]
+    B -->|"feature shipped"| C["knowledge/prds/feature_prd.md"]
 
-/flow-doc generates     work/drafts/feature_doc.md
-                            |  (user approves promotion)
-                        knowledge/adrs/015-decision.md
-                        knowledge/architecture/module.md
+    D["flow-doc generates"] --> E["work/drafts/feature_doc.md"]
+    E -->|"user approves"| F["knowledge/adrs/"]
+    E -->|"user approves"| G["knowledge/architecture/"]
 ```
 
 ---
