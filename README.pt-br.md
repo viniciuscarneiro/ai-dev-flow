@@ -11,6 +11,7 @@
 [![GitHub Copilot](https://img.shields.io/badge/GitHub%20Copilot-supported-blue)](https://github.com/features/copilot)
 [![Cursor](https://img.shields.io/badge/Cursor-supported-blue)](https://cursor.sh)
 [![Claude Code](https://img.shields.io/badge/Claude%20Code-supported-blue)](https://claude.ai)
+[![OpenAI Codex](https://img.shields.io/badge/OpenAI%20Codex-supported-blue)](https://openai.com/codex)
 
 [Começando](#começando) · [O Fluxo](#o-fluxo) · [Como Funciona](#como-funciona) · [Playbook](ai-dev-flow/PLAYBOOK.md) · [English](README.md)
 
@@ -94,9 +95,9 @@ git clone https://github.com/viniciuscarneiro/ai-dev-flow.git /tmp/ai-dev-flow
 git clone https://github.com/viniciuscarneiro/ai-dev-flow.git /tmp/ai-dev-flow && /tmp/ai-dev-flow/setup.sh .
 ```
 
-O script copia **42 arquivos** no seu projeto:
+O script copia **50 arquivos** no seu projeto:
 - 8 prompts (a metodologia)
-- 24 wrappers para assistentes de IA (Copilot + Cursor + Claude Code)
+- 32 wrappers para assistentes de IA (Copilot + Cursor + Claude Code + Codex)
 - 5 templates de conhecimento (guidelines, ADRs, arquitetura, PRDs, assessments)
 - Referencia de principios de engenharia
 - Playbook (manual operacional)
@@ -157,10 +158,11 @@ seu-projeto/
 │
 ├── .github/prompts/                Wrappers GitHub Copilot
 ├── .agent/workflows/               Wrappers Cursor
-└── .claude/commands/               Wrappers Claude Code
+├── .claude/commands/               Wrappers Claude Code
+└── .agents/skills/                 Wrappers OpenAI Codex
 ```
 
-### Um Prompt, Tres Assistentes
+### Um Prompt, Quatro Assistentes
 
 Edite uma vez em `ai-dev-flow/prompts/`, todos os assistentes ficam sincronizados:
 
@@ -169,6 +171,7 @@ graph TD
     S["ai-dev-flow/prompts/flow-prd.md"] -->|le| C1[".github/prompts/ — Copilot"]
     S -->|le| C2[".agent/workflows/ — Cursor"]
     S -->|le| C3[".claude/commands/ — Claude Code"]
+    S -->|le| C4[".agents/skills/ — Codex"]
 ```
 
 ### Fluxo de Conhecimento
@@ -225,6 +228,7 @@ Cada prompt e baseado em praticas comprovadas de engenharia:
 | **GitHub Copilot** | VS Code, JetBrains, Visual Studio, Xcode, Eclipse | `/flow-prd`, `/flow-rfc`, ... | Le de `.github/prompts/` |
 | **Cursor** | Cursor, JetBrains (via ACP) | `/flow-prd`, `/flow-rfc`, ... | Le de `.agent/workflows/` |
 | **Claude Code** | VS Code, JetBrains, Antigravity, Windsurf, Zed, Neovim, Emacs, Claude Desktop, Terminal | `/flow-prd`, `/flow-rfc`, ... | Le de `.claude/commands/` |
+| **OpenAI Codex CLI** | Terminal | `flow-prd`, `flow-rfc`, ... | Le de `.agents/skills/` |
 
 Todos usam os mesmos prompts. Troque de assistente ou IDE sem mudar nada.
 

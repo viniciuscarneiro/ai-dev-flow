@@ -11,6 +11,7 @@
 [![GitHub Copilot](https://img.shields.io/badge/GitHub%20Copilot-supported-blue)](https://github.com/features/copilot)
 [![Cursor](https://img.shields.io/badge/Cursor-supported-blue)](https://cursor.sh)
 [![Claude Code](https://img.shields.io/badge/Claude%20Code-supported-blue)](https://claude.ai)
+[![OpenAI Codex](https://img.shields.io/badge/OpenAI%20Codex-supported-blue)](https://openai.com/codex)
 
 [Getting Started](#getting-started) · [The Flow](#the-flow) · [How It Works](#how-it-works) · [Playbook](ai-dev-flow/PLAYBOOK.md) · [Portugu&ecirc;s](README.pt-br.md)
 
@@ -94,9 +95,9 @@ git clone https://github.com/viniciuscarneiro/ai-dev-flow.git /tmp/ai-dev-flow
 git clone https://github.com/viniciuscarneiro/ai-dev-flow.git /tmp/ai-dev-flow && /tmp/ai-dev-flow/setup.sh .
 ```
 
-The setup script copies **42 files** into your project:
+The setup script copies **50 files** into your project:
 - 8 prompts (the methodology)
-- 24 AI assistant wrappers (Copilot + Cursor + Claude Code)
+- 32 AI assistant wrappers (Copilot + Cursor + Claude Code + Codex)
 - 5 knowledge templates (guidelines, ADRs, architecture, PRDs, assessments)
 - Engineering principles reference
 - Playbook (operating manual)
@@ -157,10 +158,11 @@ your-project/
 │
 ├── .github/prompts/                GitHub Copilot wrappers
 ├── .agent/workflows/               Cursor wrappers
-└── .claude/commands/               Claude Code wrappers
+├── .claude/commands/               Claude Code wrappers
+└── .agents/skills/                 OpenAI Codex wrappers
 ```
 
-### One Prompt, Three Assistants
+### One Prompt, Four Assistants
 
 Edit once in `ai-dev-flow/prompts/`, all assistants stay in sync:
 
@@ -169,6 +171,7 @@ graph TD
     S["ai-dev-flow/prompts/flow-prd.md"] -->|reads| C1[".github/prompts/ — Copilot"]
     S -->|reads| C2[".agent/workflows/ — Cursor"]
     S -->|reads| C3[".claude/commands/ — Claude Code"]
+    S -->|reads| C4[".agents/skills/ — Codex"]
 ```
 
 ### Knowledge Flow
@@ -225,8 +228,9 @@ Every prompt is grounded in proven engineering practices:
 | **GitHub Copilot** | VS Code, JetBrains, Visual Studio, Xcode, Eclipse | `/flow-prd`, `/flow-rfc`, ... | Reads from `.github/prompts/` |
 | **Cursor** | Cursor, JetBrains (via ACP) | `/flow-prd`, `/flow-rfc`, ... | Reads from `.agent/workflows/` |
 | **Claude Code** | VS Code, JetBrains, Antigravity, Windsurf, Zed, Neovim, Emacs, Claude Desktop, Terminal | `/flow-prd`, `/flow-rfc`, ... | Reads from `.claude/commands/` |
+| **OpenAI Codex CLI** | Terminal | `flow-prd`, `flow-rfc`, ... | Reads from `.agents/skills/` |
 
-All three use the same prompts. Switch assistants or IDEs without changing anything.
+All four use the same prompts. Switch assistants or IDEs without changing anything.
 
 ---
 
