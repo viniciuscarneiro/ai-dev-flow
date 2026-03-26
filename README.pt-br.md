@@ -207,9 +207,9 @@ graph LR
 Cada prompt e baseado em praticas comprovadas de engenharia:
 
 - **Produto**: Amazon Working Backwards, MoSCoW, User and Job Stories
-- **Arquitetura**: Clean Architecture, Hexagonal, DDD, SOLID
+- **Arquitetura**: Clean Architecture, Hexagonal, DDD, SOLID, KISS, YAGNI
 - **Seguranca**: OWASP Top 10:2025 (atualizado com Supply Chain em #3)
-- **Qualidade de Codigo**: Clean Code (Martin), Design Patterns (GoF), Code Smells
+- **Qualidade de Codigo**: Clean Code (Martin), Design Patterns (GoF), Code Smells, KISS, YAGNI
 - **Testes**: TDD (Beck Canon 2023), SMURF Framework (Google 2024), Test Pyramid
 - **Review**: Google Code Review Guidelines, Microsoft Engineering Fundamentals
 - **Documentacao**: Living Documentation (Martraire), C4 Model (Brown), ADR (Nygard)

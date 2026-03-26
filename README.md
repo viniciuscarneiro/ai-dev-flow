@@ -207,9 +207,9 @@ graph LR
 Every prompt is grounded in proven engineering practices:
 
 - **Product**: Amazon Working Backwards, MoSCoW prioritization, User and Job Stories
-- **Architecture**: Clean Architecture, Hexagonal, DDD, SOLID
+- **Architecture**: Clean Architecture, Hexagonal, DDD, SOLID, KISS, YAGNI
 - **Security**: OWASP Top 10:2025 (updated with Supply Chain at #3, Exceptional Conditions at #10)
-- **Code Quality**: Clean Code (Martin), Design Patterns (GoF), Code Smells
+- **Code Quality**: Clean Code (Martin), Design Patterns (GoF), Code Smells, KISS, YAGNI
 - **Testing**: TDD (Beck Canon 2023), SMURF Framework (Google 2024), Test Pyramid
 - **Review**: Google Code Review Guidelines, Microsoft Engineering Fundamentals
 - **Documentation**: Living Documentation (Martraire), C4 Model (Brown), ADR (Nygard)

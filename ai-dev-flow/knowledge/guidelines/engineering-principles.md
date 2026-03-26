@@ -21,6 +21,22 @@ This is the shared engineering principles reference for the AI Dev Flow. It is r
 - **I — Interface Segregation:** No client should depend on methods it doesn't use. Prefer small, focused interfaces over fat ones.
 - **D — Dependency Inversion:** High-level modules depend on abstractions, not concretions. Inject dependencies — don't instantiate them.
 
+## KISS — Keep It Simple, Stupid
+
+- **Simplicity is a feature** — The simplest solution that works is usually the best. Complexity is a cost, not a badge of honor.
+- **If you can't explain it simply, it's too complex** — Code, architecture, and interfaces should be understandable without a walkthrough.
+- **Fewer moving parts** — Every abstraction, indirection, and configuration adds cognitive load. Justify each one.
+- **Simple doesn't mean naive** — A well-chosen `if` statement beats a poorly-chosen Strategy pattern. Match the tool to the problem's actual complexity.
+- **Readable over clever** — A straightforward loop is better than a chain of obscure functional transforms that saves 2 lines but takes 10 minutes to understand.
+
+## YAGNI — You Aren't Gonna Need It
+
+- **Don't build for hypothetical futures** — Implement what is needed now, not what might be needed later. Requirements change; premature code doesn't.
+- **Three real use cases before abstracting** — One case is specific code. Two might be coincidence. Three is a pattern worth abstracting.
+- **No speculative generality** — Don't add configuration options, feature flags, plugin systems, or extensibility points "just in case."
+- **Delete is cheaper than maintain** — Unused code, unused parameters, unused features — they all have maintenance cost. Remove them.
+- **YAGNI applies to architecture too** — Don't split into microservices, add message queues, or introduce event sourcing until the actual load or complexity demands it.
+
 ## Clean Architecture & Hexagonal
 
 - **Dependency direction** — Dependencies point inward. Domain logic knows nothing about frameworks, databases, or HTTP.
