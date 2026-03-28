@@ -67,7 +67,7 @@ graph LR
 |---|---|
 | **Purpose** | Evaluate technical approaches and recommend one |
 | **Role** | Staff Engineer / System Designer |
-| **Input** | Approved PRD |
+| **Input** | Approved PRD (+ UX specification, if applicable) |
 | **Output** | `ai-dev-flow/work/specs/[FEATURE]_rfc.md` |
 | **Key artifacts** | 2-4 proposed solutions, System Design Dimensions, Decision Matrix, Recommendation with trade-offs |
 | **References** | Google Design Docs, Uber RFC process |

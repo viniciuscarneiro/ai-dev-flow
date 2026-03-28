@@ -136,7 +136,7 @@ The AI will:
 2. Analyze the requirement critically
 3. Ask clarifying questions
 4. Generate a structured PRD with Definition of Done
-5. Suggest the next step (`/flow-rfc`)
+5. Suggest the next step (`/flow-ux`)
 
 ---
 

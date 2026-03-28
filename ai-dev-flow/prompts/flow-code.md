@@ -170,6 +170,8 @@ Beyond the TDD cycle, a senior engineer handles the complete implementation:
 
 Read `ai-dev-flow/knowledge/guidelines/engineering-principles.md` before coding. It contains the full reference for: Clean Code, SOLID, Clean Architecture, DDD, RESTful Design, Design Patterns, Algorithmic Thinking, Functional Programming, Error Handling, Code Smells, Security, Observability, and Language-Specific Excellence.
 
+For UI/frontend work, also read `ai-dev-flow/knowledge/guidelines/design-principles.md`. It covers Atomic Design, Design Token Hierarchy, Typography, Color System, Spacing, Motion & Animation, WCAG 2.2 accessibility, and Responsive Strategy.
+
 Apply these principles throughout implementation — they are a reference for making good decisions, not a checklist to follow blindly.
 
 ## When Things Go Wrong

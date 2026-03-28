@@ -136,7 +136,7 @@ A IA vai:
 2. Analisar o requisito criticamente
 3. Fazer perguntas de esclarecimento
 4. Gerar um PRD estruturado com Definition of Done
-5. Sugerir o proximo passo (`/flow-rfc`)
+5. Sugerir o proximo passo (`/flow-ux`)
 
 ---
 

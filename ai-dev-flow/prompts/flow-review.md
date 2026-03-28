@@ -37,6 +37,7 @@ Read before reviewing:
 - `ai-dev-flow/work/specs/` — PRD (for DoD), Tech Assessment, and/or RFC for this feature
 - `ai-dev-flow/knowledge/guidelines/` — Code standards, naming conventions, project patterns
 - `ai-dev-flow/knowledge/guidelines/engineering-principles.md` — Shared engineering principles (same reference the developer used)
+- `ai-dev-flow/knowledge/guidelines/design-principles.md` — Shared design principles (for UI/frontend reviews: Atomic Design, tokens, motion, WCAG 2.2)
 - `ai-dev-flow/knowledge/adrs/` — Architectural decisions the code MUST respect
 - `ai-dev-flow/knowledge/architecture/` — System architecture documentation
 - **The diff/code being reviewed** — The primary input
