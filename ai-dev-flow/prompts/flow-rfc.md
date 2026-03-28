@@ -2,14 +2,15 @@
 
 ## Flow Position
 
-This is **step 2 of 8** in the AI Dev Flow cycle.
+This is **step 3 of 9** in the AI Dev Flow cycle.
 
 | Previous | Current | Next |
 |----------|---------|------|
-| PRD (`/flow-prd`) | **RFC** | Tech Assessment (`/flow-ta`) |
+| UX (`/flow-ux`) | **RFC** | Tech Assessment (`/flow-ta`) |
 
 - This prompt works standalone — you don't need to run previous steps.
 - If a PRD exists in `ai-dev-flow/work/specs/`, read it as the primary input.
+- If a UX specification exists in `ai-dev-flow/work/specs/`, read it for design context — user flows, component hierarchy, design tokens, and interaction patterns inform the technical approach.
 - After the user approves the RFC, suggest running `/flow-ta` to deep-dive into the chosen solution. **Only proceed with explicit user approval.**
 
 ## Role

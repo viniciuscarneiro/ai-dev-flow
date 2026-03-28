@@ -38,7 +38,7 @@ Assistentes de IA para codigo sao poderosos, mas sem estrutura produzem output i
 
 AI Dev Flow e um **kit de metodologia** que se conecta ao seu projeto existente. Ele oferece:
 
-- **8 slash commands** que guiam a IA por um SDLC estruturado
+- **9 slash commands** que guiam a IA por um SDLC estruturado
 - **Prompts compartilhados** que funcionam no GitHub Copilot, Cursor e Claude Code
 - **Uma base de conhecimento** onde a IA le guidelines, ADRs e docs de arquitetura do seu projeto
 - **Artefatos de trabalho** que criam uma trilha rastreavel do PRD a producao
@@ -52,6 +52,7 @@ Nao e um framework, nao e um CLI, nao e um SaaS. E um conjunto de arquivos que v
 
 ```
 /flow-prd      Defina o que construir      Requisitos de Produto + Definition of Done
+/flow-ux       Projete a experiencia       Especificacao UX/UI (Atomic Design, Design Tokens, Motion, WCAG 2.2)
 /flow-rfc      Escolha como construir      Alternativas, Matriz de Decisao, Recomendacao
 /flow-ta       Projete os detalhes         Assessment de Engenharia, BDD, Plano de Implementacao
 /flow-code     Construa                    TDD, Full-cycle: migrations, config, observabilidade
@@ -64,7 +65,8 @@ Nao e um framework, nao e um CLI, nao e um SaaS. E um conjunto de arquivos que v
 ```mermaid
 graph TD
     A[Requisito] --> B["flow-prd"]
-    B --> C["flow-rfc"]
+    B --> B2["flow-ux"]
+    B2 --> C["flow-rfc"]
     C --> D["flow-ta"]
     D --> E["flow-code"]
     E --> F{"flow-review"}
@@ -95,11 +97,11 @@ git clone https://github.com/viniciuscarneiro/ai-dev-flow.git /tmp/ai-dev-flow
 git clone https://github.com/viniciuscarneiro/ai-dev-flow.git /tmp/ai-dev-flow && /tmp/ai-dev-flow/setup.sh .
 ```
 
-O script copia **50 arquivos** no seu projeto:
-- 8 prompts (a metodologia)
-- 32 wrappers para assistentes de IA (Copilot + Cursor + Claude Code + Codex)
+O script copia **56 arquivos** no seu projeto:
+- 9 prompts (a metodologia)
+- 36 wrappers para assistentes de IA (Copilot + Cursor + Claude Code + Codex)
 - 5 templates de conhecimento (guidelines, ADRs, arquitetura, PRDs, assessments)
-- Referencia de principios de engenharia
+- Referencia de principios de engenharia e design
 - Playbook (manual operacional)
 - Diretorios de trabalho para artefatos
 
@@ -145,7 +147,7 @@ A IA vai:
 seu-projeto/
 ├── ai-dev-flow/                    Tudo vive aqui
 │   ├── PLAYBOOK.md                 Manual operacional
-│   ├── prompts/                    Fonte unica (8 prompts)
+│   ├── prompts/                    Fonte unica (9 prompts)
 │   ├── knowledge/                  O cerebro do seu projeto
 │   │   ├── guidelines/             Padroes que a IA segue
 │   │   ├── adrs/                   Decisoes que a IA respeita
@@ -195,6 +197,7 @@ graph LR
 | Etapa | Role | Inspirado em | Output Principal |
 |-------|------|-------------|-----------------|
 | **PRD** | PM Senior | Amazon Working Backwards, MoSCoW | Requisitos, User Stories, DoD |
+| **UX** | UX/UI Designer Senior | Atomic Design, Design Tokens, WCAG 2.2 | Design Spec, Component Map, Motion, Acessibilidade |
 | **RFC** | Staff Engineer | Google Design Docs, Uber RFCs | Matriz de Decisao, System Design |
 | **TA** | Principal Engineer | Checklist de 28 categorias | Cenarios BDD, Sequencia de Implementacao |
 | **Code** | Senior Full-Cycle | TDD (Kent Beck), Clean Code, SMURF (Google) | Codigo, Testes, Migrations, Config |
@@ -210,6 +213,7 @@ graph LR
 Cada prompt e baseado em praticas comprovadas de engenharia:
 
 - **Produto**: Amazon Working Backwards, MoSCoW, User and Job Stories
+- **UX/UI**: Atomic Design (Frost), Design Tokens, Motion Design, WCAG 2.2 AA
 - **Arquitetura**: Clean Architecture, Hexagonal, DDD, SOLID, KISS, YAGNI
 - **Seguranca**: OWASP Top 10:2025 (atualizado com Supply Chain em #3)
 - **Qualidade de Codigo**: Clean Code (Martin), Design Patterns (GoF), Code Smells, KISS, YAGNI
@@ -237,7 +241,7 @@ Todos usam os mesmos prompts. Troque de assistente ou IDE sem mudar nada.
 ## FAQ
 
 <details>
-<summary><strong>Preciso seguir todas as 8 etapas pra cada feature?</strong></summary>
+<summary><strong>Preciso seguir todas as 9 etapas pra cada feature?</strong></summary>
 <br>
 Nao. Um bug fix de 3 linhas pode ir direto pra <code>/flow-debug</code> > <code>/flow-code</code> > <code>/flow-review</code>. O ciclo completo e pra features significativas. Escale a cerimonia ao risco.
 </details>

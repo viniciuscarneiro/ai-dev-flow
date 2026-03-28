@@ -6,10 +6,11 @@ This is the operating manual for AI-assisted development using the AI Dev Flow m
 
 ## The Flow
 
-Feature development follows an 8-step cycle. Each step has a dedicated slash command and produces traceable artifacts.
+Feature development follows a 9-step cycle. Each step has a dedicated slash command and produces traceable artifacts.
 
 ```
 /flow-prd     → What the user needs (Product Requirements + Definition of Done)
+/flow-ux      → How the user experiences it (UX/UI Design Specification)
 /flow-rfc     → Which technical approach (Alternatives, Decision Matrix, Recommendation)
 /flow-ta      → How to build it (Detailed engineering design, BDD, Implementation sequence)
 /flow-code    → Build it (TDD, Full-cycle implementation)
@@ -22,7 +23,8 @@ Feature development follows an 8-step cycle. Each step has a dedicated slash com
 ```mermaid
 graph LR
     A[Requirement] --> B["/flow-prd"]
-    B --> C["/flow-rfc"]
+    B --> B2["/flow-ux"]
+    B2 --> C["/flow-rfc"]
     C --> D["/flow-ta"]
     D --> E["/flow-code"]
     E --> F["/flow-review"]
@@ -47,7 +49,19 @@ graph LR
 | **Key artifacts** | Problem Statement, User Stories, Job Stories, Functional Requirements (MoSCoW), Success Metrics, Definition of Done |
 | **References** | Amazon Working Backwards, Google PRD practices |
 
-### Step 2: RFC — `/flow-rfc`
+### Step 2: UX — `/flow-ux`
+
+| | |
+|---|---|
+| **Purpose** | Define how the user experiences the product |
+| **Role** | Senior UX/UI Designer & Design System Architect |
+| **Input** | Approved PRD, user flow description, or redesign request |
+| **Output** | `ai-dev-flow/work/specs/[FEATURE]_ux.md` |
+| **Key artifacts** | Design Principles, User Personas & JTBD, Information Architecture, User Flows, Design Tokens, Component Inventory (Atomic Design), Layout Specs, Motion & Animation, Accessibility (WCAG 2.2), Visual References |
+| **References** | Double Diamond, Design Thinking (IDEO), Atomic Design (Brad Frost), Material Design 3, Apple HIG, WCAG 2.2, Awwwards, Godly |
+| **Skip when** | Feature has no user-facing interface: APIs, background jobs, infrastructure, CLI tools, libraries |
+
+### Step 3: RFC — `/flow-rfc`
 
 | | |
 |---|---|
@@ -58,7 +72,7 @@ graph LR
 | **Key artifacts** | 2-4 proposed solutions, System Design Dimensions, Decision Matrix, Recommendation with trade-offs |
 | **References** | Google Design Docs, Uber RFC process |
 
-### Step 3: Tech Assessment — `/flow-ta`
+### Step 4: Tech Assessment — `/flow-ta`
 
 | | |
 |---|---|
@@ -69,7 +83,7 @@ graph LR
 | **Key artifacts** | 28-category Engineering Reference checklist, BDD scenarios (Gherkin), Implementation Sequence with task dependencies |
 | **References** | SOLID, Clean Architecture, DDD, OWASP, GoF Patterns |
 
-### Step 4: Code — `/flow-code`
+### Step 5: Code — `/flow-code`
 
 | | |
 |---|---|
@@ -80,7 +94,7 @@ graph LR
 | **Key artifacts** | TDD cycle (Red→Green→Refactor), Full-cycle delivery (migrations, env vars, feature flags, observability) |
 | **References** | TDD (Kent Beck 2023), Clean Code (Robert C. Martin), SMURF (Google 2024) |
 
-### Step 5: Review — `/flow-review`
+### Step 6: Review — `/flow-review`
 
 | | |
 |---|---|
@@ -91,7 +105,7 @@ graph LR
 | **Key artifacts** | 11 review dimensions, OWASP 2025, DoD validation, Severity classification (Blocker/Major/Minor/Praise) |
 | **References** | Google Code Review Guidelines, Microsoft Engineering Fundamentals, OWASP Top 10:2025 |
 
-### Step 6: Documentation — `/flow-doc`
+### Step 7: Documentation — `/flow-doc`
 
 | | |
 |---|---|
@@ -102,7 +116,7 @@ graph LR
 | **Key artifacts** | ADRs (Nygard format), C4 Architecture diagrams (Mermaid), BDD from code, Health Assessment (reverse mode) |
 | **References** | Living Documentation (Cyrille Martraire), C4 Model (Simon Brown), Docs as Code |
 
-### Step 7: Done — `/flow-done`
+### Step 8: Done — `/flow-done`
 
 | | |
 |---|---|
@@ -113,7 +127,7 @@ graph LR
 | **Key artifacts** | DoD validation with evidence, Production Readiness Checklist, Feature Retrospective, Go/No-Go Verdict |
 | **References** | Google SRE PRR, Amazon ORR, Microsoft Ship/No-Ship, Wix Feature Retrospectives |
 
-### Step 8: Debug — `/flow-debug` (Parallel)
+### Step 9: Debug — `/flow-debug` (Parallel)
 
 | | |
 |---|---|
@@ -132,8 +146,9 @@ graph LR
 ai-dev-flow/
 ├── PLAYBOOK.md                          # <- You are here
 │
-├── prompts/                             # [Source of Truth] The 8 AI prompts
+├── prompts/                             # [Source of Truth] The 9 AI prompts
 │   ├── flow-prd.md                      # Product Requirements
+│   ├── flow-ux.md                       # UX/UI Design Specification
 │   ├── flow-rfc.md                      # Request for Comments
 │   ├── flow-ta.md                       # Tech Assessment
 │   ├── flow-code.md                     # Implementation
@@ -145,6 +160,7 @@ ai-dev-flow/
 ├── knowledge/                           # [Permanent] Project knowledge base
 │   ├── guidelines/                      # Code standards, conventions, patterns
 │   │   ├── engineering-principles.md    # Shared engineering reference (SOLID, Clean Code, DDD, etc.)
+│   │   ├── design-principles.md         # Shared design reference (Atomic Design, Tokens, Motion, A11y)
 │   │   └── _template.md                # Template for creating new guidelines
 │   ├── adrs/                            # Architectural Decision Records
 │   │   └── _template.md                # ADR template (Nygard format)
@@ -188,6 +204,10 @@ Artifacts have a lifecycle: they start as volatile work, get reviewed, and are p
                           ↓ (feature delivered + /flow-done approved)
                       knowledge/prds/feature_prd.md
 
+/flow-ux generates  → work/specs/feature_ux.md
+                          ↓ (design tokens and patterns mature into reusable guidelines)
+                      knowledge/guidelines/design-principles.md (updated)
+
 /flow-ta generates  → work/specs/feature_ta.md
                           ↓ (feature delivered + /flow-done approved)
                       knowledge/assessments/feature_ta.md
@@ -212,7 +232,7 @@ Artifacts have a lifecycle: they start as volatile work, get reviewed, and are p
 
 4. **Respect ADRs.** Decisions in `ai-dev-flow/knowledge/adrs/` are authoritative. To propose a change, justify it and create a new ADR.
 
-5. **Follow Guidelines.** Code standards, naming conventions, and architecture patterns are defined in `ai-dev-flow/knowledge/guidelines/`. The shared `engineering-principles.md` is the baseline for all engineering decisions.
+5. **Follow Guidelines.** Code standards, naming conventions, and architecture patterns are defined in `ai-dev-flow/knowledge/guidelines/`. The shared `engineering-principles.md` is the baseline for all engineering decisions. The shared `design-principles.md` is the baseline for all design decisions.
 
 6. **Follow the Project's Patterns.** Read the existing codebase before writing new code. Consistency with the project matters more than personal preference.
 
@@ -228,7 +248,7 @@ Artifacts have a lifecycle: they start as volatile work, get reviewed, and are p
 
 ## Best Practices
 
-- **Don't skip steps.** For new features, follow the full cycle. For simple bugs, go straight to `/flow-debug` → `/flow-code` → `/flow-review`.
+- **Don't skip steps — except `/flow-ux` when there is no UI.** For new features with screens, follow the full cycle. For backend-only work (APIs, jobs, infrastructure, libraries), skip `/flow-ux` and go straight from `/flow-prd` to `/flow-rfc`. For simple bugs, go straight to `/flow-debug` → `/flow-code` → `/flow-review`.
 - **Seed your knowledge base.** Before starting, populate `ai-dev-flow/knowledge/` with existing guidelines, ADRs, and architecture docs. The richer the knowledge base, the better the AI's output.
 - **Living Guidelines.** Keep `ai-dev-flow/knowledge/guidelines/` updated as your project evolves. New patterns, new conventions, new ADRs — capture them.
 - **Cleanup.** Periodically archive old work from `ai-dev-flow/work/`. Promote completed artifacts to `knowledge/`.

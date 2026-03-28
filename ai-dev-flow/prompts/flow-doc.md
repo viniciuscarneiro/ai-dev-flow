@@ -2,7 +2,7 @@
 
 ## Flow Position
 
-This is **step 6 of 8** in the AI Dev Flow cycle.
+This is **step 7 of 9** in the AI Dev Flow cycle.
 
 | Previous | Current | Next |
 |----------|---------|------|

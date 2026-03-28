@@ -2,7 +2,7 @@
 
 ## Flow Position
 
-This is **step 7 of 8** in the AI Dev Flow cycle (the final sequential step).
+This is **step 8 of 9** in the AI Dev Flow cycle (the final sequential step).
 
 | Previous | Current | Next |
 |----------|---------|------|

@@ -84,9 +84,11 @@ for f in "$SCRIPT_DIR"/ai-dev-flow/prompts/flow-*.md; do
   copy_file "$f" "$TARGET/ai-dev-flow/prompts/$name"
 done
 
-# Engineering Principles (shared reference)
+# Shared references (engineering + design principles)
 copy_file "$SCRIPT_DIR/ai-dev-flow/knowledge/guidelines/engineering-principles.md" \
           "$TARGET/ai-dev-flow/knowledge/guidelines/engineering-principles.md"
+copy_file "$SCRIPT_DIR/ai-dev-flow/knowledge/guidelines/design-principles.md" \
+          "$TARGET/ai-dev-flow/knowledge/guidelines/design-principles.md"
 
 echo ""
 
@@ -135,6 +137,13 @@ for f in "$SCRIPT_DIR"/.claude/commands/*.md; do
   copy_file "$f" "$TARGET/.claude/commands/$name"
 done
 
+echo "  Codex CLI:"
+for d in "$SCRIPT_DIR"/.agents/skills/*/; do
+  [ -d "$d" ] || continue
+  skill="$(basename "$d")"
+  copy_file "$d/SKILL.md" "$TARGET/.agents/skills/$skill/SKILL.md"
+done
+
 echo ""
 
 # ─── Summary ───
@@ -166,12 +175,13 @@ echo -e "  2. ${BOLD}Read the playbook${NC}:"
 echo -e "     ai-dev-flow/PLAYBOOK.md"
 echo ""
 echo -e "  3. ${BOLD}Start using the flow${NC}:"
-echo -e "     /flow-prd   → Define what to build"
-echo -e "     /flow-rfc   → Choose how to build it"
-echo -e "     /flow-ta    → Design the details"
-echo -e "     /flow-code  → Build it"
+echo -e "     /flow-prd    → Define what to build"
+echo -e "     /flow-ux     → Design the experience"
+echo -e "     /flow-rfc    → Choose how to build it"
+echo -e "     /flow-ta     → Design the details"
+echo -e "     /flow-code   → Build it"
 echo -e "     /flow-review → Review it"
-echo -e "     /flow-doc   → Document it"
-echo -e "     /flow-done  → Ship it"
-echo -e "     /flow-debug → Debug (anytime)"
+echo -e "     /flow-doc    → Document it"
+echo -e "     /flow-done   → Ship it"
+echo -e "     /flow-debug  → Debug (anytime)"
 echo ""
