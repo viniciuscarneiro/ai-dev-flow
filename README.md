@@ -12,6 +12,7 @@
 [![Cursor](https://img.shields.io/badge/Cursor-supported-blue)](https://cursor.sh)
 [![Claude Code](https://img.shields.io/badge/Claude%20Code-supported-blue)](https://claude.ai)
 [![OpenAI Codex](https://img.shields.io/badge/OpenAI%20Codex-supported-blue)](https://openai.com/codex)
+[![Antigravity](https://img.shields.io/badge/Antigravity-supported-blue)](https://antigravity.google)
 
 [Getting Started](#getting-started) · [The Flow](#the-flow) · [How It Works](#how-it-works) · [Playbook](ai-dev-flow/PLAYBOOK.md) · [Portugu&ecirc;s](README.pt-br.md)
 
@@ -39,7 +40,7 @@ AI coding assistants are powerful, but without structure they produce inconsiste
 AI Dev Flow is a **methodology kit** that plugs into your existing project. It provides:
 
 - **9 slash commands** that guide AI through a structured SDLC
-- **Shared prompts** that work across GitHub Copilot, Cursor, and Claude Code
+- **Shared prompts** that work across GitHub Copilot, Cursor, Claude Code, OpenAI Codex, and Antigravity
 - **A knowledge base** structure where your AI reads project guidelines, ADRs, and architecture docs
 - **Work artifacts** that create a traceable paper trail from PRD to production
 - **Engineering best practices** baked into every step (SOLID, Clean Architecture, DDD, OWASP, TDD)
@@ -160,11 +161,12 @@ your-project/
 │
 ├── .github/prompts/                GitHub Copilot wrappers
 ├── .agent/workflows/               Cursor wrappers
+├── .agent/skills/                  Antigravity wrappers
 ├── .claude/commands/               Claude Code wrappers
 └── .agents/skills/                 OpenAI Codex wrappers
 ```
 
-### One Prompt, Four Assistants
+### One Prompt, Five Assistants
 
 Edit once in `ai-dev-flow/prompts/`, all assistants stay in sync:
 
@@ -172,8 +174,9 @@ Edit once in `ai-dev-flow/prompts/`, all assistants stay in sync:
 graph TD
     S["ai-dev-flow/prompts/flow-prd.md"] -->|reads| C1[".github/prompts/ — Copilot"]
     S -->|reads| C2[".agent/workflows/ — Cursor"]
-    S -->|reads| C3[".claude/commands/ — Claude Code"]
-    S -->|reads| C4[".agents/skills/ — Codex"]
+    S -->|reads| C3[".agent/skills/ — Antigravity"]
+    S -->|reads| C4[".claude/commands/ — Claude Code"]
+    S -->|reads| C5[".agents/skills/ — Codex"]
 ```
 
 ### Knowledge Flow
@@ -231,10 +234,11 @@ Every prompt is grounded in proven engineering practices:
 |-----------|-----------------|---------------|-------------|
 | **GitHub Copilot** | VS Code, JetBrains, Visual Studio, Xcode, Eclipse | `/flow-prd`, `/flow-rfc`, ... | Reads from `.github/prompts/` |
 | **Cursor** | Cursor, JetBrains (via ACP) | `/flow-prd`, `/flow-rfc`, ... | Reads from `.agent/workflows/` |
-| **Claude Code** | VS Code, JetBrains, Antigravity, Windsurf, Zed, Neovim, Emacs, Claude Desktop, Terminal | `/flow-prd`, `/flow-rfc`, ... | Reads from `.claude/commands/` |
+| **Google Antigravity** | Antigravity | `flow-prd`, `flow-rfc`, ... | Reads from `.agent/skills/` |
+| **Claude Code** | VS Code, JetBrains, Windsurf, Zed, Neovim, Emacs, Claude Desktop, Terminal | `/flow-prd`, `/flow-rfc`, ... | Reads from `.claude/commands/` |
 | **OpenAI Codex CLI** | Terminal | `flow-prd`, `flow-rfc`, ... | Reads from `.agents/skills/` |
 
-All four use the same prompts. Switch assistants or IDEs without changing anything.
+All five use the same prompts. Switch assistants or IDEs without changing anything.
 
 ---
 

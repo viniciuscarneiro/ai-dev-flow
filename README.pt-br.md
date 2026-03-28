@@ -12,6 +12,7 @@
 [![Cursor](https://img.shields.io/badge/Cursor-supported-blue)](https://cursor.sh)
 [![Claude Code](https://img.shields.io/badge/Claude%20Code-supported-blue)](https://claude.ai)
 [![OpenAI Codex](https://img.shields.io/badge/OpenAI%20Codex-supported-blue)](https://openai.com/codex)
+[![Antigravity](https://img.shields.io/badge/Antigravity-supported-blue)](https://antigravity.google)
 
 [Começando](#começando) · [O Fluxo](#o-fluxo) · [Como Funciona](#como-funciona) · [Playbook](ai-dev-flow/PLAYBOOK.md) · [English](README.md)
 
@@ -39,7 +40,7 @@ Assistentes de IA para codigo sao poderosos, mas sem estrutura produzem output i
 AI Dev Flow e um **kit de metodologia** que se conecta ao seu projeto existente. Ele oferece:
 
 - **9 slash commands** que guiam a IA por um SDLC estruturado
-- **Prompts compartilhados** que funcionam no GitHub Copilot, Cursor e Claude Code
+- **Prompts compartilhados** que funcionam no GitHub Copilot, Cursor, Claude Code, OpenAI Codex e Antigravity
 - **Uma base de conhecimento** onde a IA le guidelines, ADRs e docs de arquitetura do seu projeto
 - **Artefatos de trabalho** que criam uma trilha rastreavel do PRD a producao
 - **Boas praticas de engenharia** embutidas em cada etapa (SOLID, Clean Architecture, DDD, OWASP, TDD)
@@ -160,11 +161,12 @@ seu-projeto/
 │
 ├── .github/prompts/                Wrappers GitHub Copilot
 ├── .agent/workflows/               Wrappers Cursor
+├── .agent/skills/                  Wrappers Antigravity
 ├── .claude/commands/               Wrappers Claude Code
 └── .agents/skills/                 Wrappers OpenAI Codex
 ```
 
-### Um Prompt, Quatro Assistentes
+### Um Prompt, Cinco Assistentes
 
 Edite uma vez em `ai-dev-flow/prompts/`, todos os assistentes ficam sincronizados:
 
@@ -172,8 +174,9 @@ Edite uma vez em `ai-dev-flow/prompts/`, todos os assistentes ficam sincronizado
 graph TD
     S["ai-dev-flow/prompts/flow-prd.md"] -->|le| C1[".github/prompts/ — Copilot"]
     S -->|le| C2[".agent/workflows/ — Cursor"]
-    S -->|le| C3[".claude/commands/ — Claude Code"]
-    S -->|le| C4[".agents/skills/ — Codex"]
+    S -->|le| C3[".agent/skills/ — Antigravity"]
+    S -->|le| C4[".claude/commands/ — Claude Code"]
+    S -->|le| C5[".agents/skills/ — Codex"]
 ```
 
 ### Fluxo de Conhecimento
@@ -231,10 +234,11 @@ Cada prompt e baseado em praticas comprovadas de engenharia:
 |-----------|--------------|---------------|--------------|
 | **GitHub Copilot** | VS Code, JetBrains, Visual Studio, Xcode, Eclipse | `/flow-prd`, `/flow-rfc`, ... | Le de `.github/prompts/` |
 | **Cursor** | Cursor, JetBrains (via ACP) | `/flow-prd`, `/flow-rfc`, ... | Le de `.agent/workflows/` |
-| **Claude Code** | VS Code, JetBrains, Antigravity, Windsurf, Zed, Neovim, Emacs, Claude Desktop, Terminal | `/flow-prd`, `/flow-rfc`, ... | Le de `.claude/commands/` |
+| **Google Antigravity** | Antigravity | `flow-prd`, `flow-rfc`, ... | Le de `.agent/skills/` |
+| **Claude Code** | VS Code, JetBrains, Windsurf, Zed, Neovim, Emacs, Claude Desktop, Terminal | `/flow-prd`, `/flow-rfc`, ... | Le de `.claude/commands/` |
 | **OpenAI Codex CLI** | Terminal | `flow-prd`, `flow-rfc`, ... | Le de `.agents/skills/` |
 
-Todos usam os mesmos prompts. Troque de assistente ou IDE sem mudar nada.
+Todos os cinco usam os mesmos prompts. Troque de assistente ou IDE sem mudar nada.
 
 ---
 
