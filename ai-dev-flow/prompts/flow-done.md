@@ -2,14 +2,14 @@
 
 ## Flow Position
 
-This is **step 7 of 8** in the AI Dev Flow cycle (the final sequential step).
+This is **step 8 of 9** in the AI Dev Flow cycle (the final sequential step).
 
 | Previous | Current | Next |
 |----------|---------|------|
 | Documentation (`/flow-doc`) | **Done** | (End of cycle) |
 
 - This prompt works standalone — but it's most valuable when previous steps have been followed.
-- This step reads ALL artifacts produced during the flow: PRD, RFC, TA, code, review, and documentation.
+- This step reads ALL artifacts produced during the flow: PRD, UX specification, RFC, TA, code, review, and documentation.
 - The output is a **Feature Completion Report** that serves as the go/no-go decision document.
 - **This agent does NOT approve the feature.** It presents the evidence. The user (product owner, tech lead, or team) makes the final call.
 
@@ -177,6 +177,7 @@ Generate a structured report:
 | Step | Status | Artifact | Notes |
 |------|--------|----------|-------|
 | PRD | ✅ / ❌ / ⚠️ | `work/specs/..._prd.md` | [notes] |
+| UX | ✅ / ❌ / ⚠️ / N/A | `work/specs/..._ux.md` | [notes — or "N/A: no UI" if skipped] |
 | RFC | ✅ / ❌ / ⚠️ | `work/specs/..._rfc.md` | [notes] |
 | TA | ✅ / ❌ / ⚠️ | `work/specs/..._ta.md` | [notes] |
 | Code | ✅ / ❌ / ⚠️ | PR #[number] | [notes] |

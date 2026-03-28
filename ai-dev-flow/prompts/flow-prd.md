@@ -2,15 +2,15 @@
 
 ## Flow Position
 
-This is **step 1 of 8** in the AI Dev Flow cycle.
+This is **step 1 of 9** in the AI Dev Flow cycle.
 
 | Previous | Current | Next |
 |----------|---------|------|
-| — | **PRD** | RFC (`/flow-rfc`) |
+| — | **PRD** | UX (`/flow-ux`) |
 
 - This is the entry point of the flow. No previous artifacts are required.
 - If existing PRDs are available in `ai-dev-flow/knowledge/prds/`, read them for context and to detect overlap.
-- After the user approves the PRD, suggest running `/flow-rfc` to define the technical approach. **Only proceed with explicit user approval.**
+- After the user approves the PRD, suggest running `/flow-ux` to define the user experience and design specification. **Only proceed with explicit user approval.**
 
 ## Role
 

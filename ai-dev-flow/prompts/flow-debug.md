@@ -2,7 +2,7 @@
 
 ## Flow Position
 
-This is **step 8 of 8** in the AI Dev Flow cycle — a **parallel step** that can be triggered at any time.
+This is **step 9 of 9** in the AI Dev Flow cycle — a **parallel step** that can be triggered at any time.
 
 | Trigger | Current | Next |
 |---------|---------|------|

@@ -12,6 +12,7 @@
 [![Cursor](https://img.shields.io/badge/Cursor-supported-blue)](https://cursor.sh)
 [![Claude Code](https://img.shields.io/badge/Claude%20Code-supported-blue)](https://claude.ai)
 [![OpenAI Codex](https://img.shields.io/badge/OpenAI%20Codex-supported-blue)](https://openai.com/codex)
+[![Antigravity](https://img.shields.io/badge/Antigravity-supported-blue)](https://antigravity.google)
 
 [Getting Started](#getting-started) · [The Flow](#the-flow) · [How It Works](#how-it-works) · [Playbook](ai-dev-flow/PLAYBOOK.md) · [Portugu&ecirc;s](README.pt-br.md)
 
@@ -38,8 +39,8 @@ AI coding assistants are powerful, but without structure they produce inconsiste
 
 AI Dev Flow is a **methodology kit** that plugs into your existing project. It provides:
 
-- **8 slash commands** that guide AI through a structured SDLC
-- **Shared prompts** that work across GitHub Copilot, Cursor, and Claude Code
+- **9 slash commands** that guide AI through a structured SDLC
+- **Shared prompts** that work across GitHub Copilot, Cursor, Claude Code, OpenAI Codex, and Antigravity
 - **A knowledge base** structure where your AI reads project guidelines, ADRs, and architecture docs
 - **Work artifacts** that create a traceable paper trail from PRD to production
 - **Engineering best practices** baked into every step (SOLID, Clean Architecture, DDD, OWASP, TDD)
@@ -52,6 +53,7 @@ It's not a framework, not a CLI tool, not a SaaS. It's a set of files you copy i
 
 ```
 /flow-prd      Define what to build       Product Requirements + Definition of Done
+/flow-ux       Design the experience      UX/UI Design Specification (Atomic Design, Design Tokens, Motion, WCAG 2.2)
 /flow-rfc      Choose how to build it     Alternatives, Decision Matrix, Recommendation
 /flow-ta       Design the details         Engineering Assessment, BDD, Implementation Plan
 /flow-code     Build it                   TDD, Full-cycle: migrations, config, observability
@@ -64,7 +66,8 @@ It's not a framework, not a CLI tool, not a SaaS. It's a set of files you copy i
 ```mermaid
 graph TD
     A[Requirement] --> B["flow-prd"]
-    B --> C["flow-rfc"]
+    B --> B2["flow-ux"]
+    B2 --> C["flow-rfc"]
     C --> D["flow-ta"]
     D --> E["flow-code"]
     E --> F{"flow-review"}
@@ -95,11 +98,11 @@ git clone https://github.com/viniciuscarneiro/ai-dev-flow.git /tmp/ai-dev-flow
 git clone https://github.com/viniciuscarneiro/ai-dev-flow.git /tmp/ai-dev-flow && /tmp/ai-dev-flow/setup.sh .
 ```
 
-The setup script copies **50 files** into your project:
-- 8 prompts (the methodology)
-- 32 AI assistant wrappers (Copilot + Cursor + Claude Code + Codex)
+The setup script copies **65 files** into your project:
+- 9 prompts (the methodology)
+- 45 AI assistant wrappers (Copilot + Cursor + Claude Code + Codex + Antigravity)
 - 5 knowledge templates (guidelines, ADRs, architecture, PRDs, assessments)
-- Engineering principles reference
+- Engineering principles and design principles references
 - Playbook (operating manual)
 - Work directories for artifacts
 
@@ -133,7 +136,7 @@ The AI will:
 2. Analyze the requirement critically
 3. Ask clarifying questions
 4. Generate a structured PRD with Definition of Done
-5. Suggest the next step (`/flow-rfc`)
+5. Suggest the next step (`/flow-ux`)
 
 ---
 
@@ -145,7 +148,7 @@ The AI will:
 your-project/
 ├── ai-dev-flow/                    Everything lives here
 │   ├── PLAYBOOK.md                 Operating manual
-│   ├── prompts/                    Source of truth (8 prompts)
+│   ├── prompts/                    Source of truth (9 prompts)
 │   ├── knowledge/                  Your project's brain
 │   │   ├── guidelines/             Standards the AI follows
 │   │   ├── adrs/                   Decisions the AI respects
@@ -158,11 +161,12 @@ your-project/
 │
 ├── .github/prompts/                GitHub Copilot wrappers
 ├── .agent/workflows/               Cursor wrappers
+├── .agent/skills/                  Antigravity wrappers
 ├── .claude/commands/               Claude Code wrappers
 └── .agents/skills/                 OpenAI Codex wrappers
 ```
 
-### One Prompt, Four Assistants
+### One Prompt, Five Assistants
 
 Edit once in `ai-dev-flow/prompts/`, all assistants stay in sync:
 
@@ -170,8 +174,9 @@ Edit once in `ai-dev-flow/prompts/`, all assistants stay in sync:
 graph TD
     S["ai-dev-flow/prompts/flow-prd.md"] -->|reads| C1[".github/prompts/ — Copilot"]
     S -->|reads| C2[".agent/workflows/ — Cursor"]
-    S -->|reads| C3[".claude/commands/ — Claude Code"]
-    S -->|reads| C4[".agents/skills/ — Codex"]
+    S -->|reads| C3[".agent/skills/ — Antigravity"]
+    S -->|reads| C4[".claude/commands/ — Claude Code"]
+    S -->|reads| C5[".agents/skills/ — Codex"]
 ```
 
 ### Knowledge Flow
@@ -195,6 +200,7 @@ graph LR
 | Step | Role | Inspired By | Key Output |
 |------|------|-------------|------------|
 | **PRD** | Senior Product Manager | Amazon Working Backwards, MoSCoW | Requirements, User Stories, DoD |
+| **UX** | Senior UX/UI Designer | Atomic Design, Design Tokens, WCAG 2.2 | Design Spec, Component Map, Motion, Accessibility |
 | **RFC** | Staff Engineer | Google Design Docs, Uber RFCs | Decision Matrix, System Design, Recommendation |
 | **TA** | Principal Engineer | 28-category engineering checklist | BDD Scenarios, Implementation Sequence |
 | **Code** | Senior Full-Cycle Engineer | TDD (Kent Beck), Clean Code, SMURF (Google) | Code, Tests, Migrations, Config |
@@ -210,6 +216,7 @@ graph LR
 Every prompt is grounded in proven engineering practices:
 
 - **Product**: Amazon Working Backwards, MoSCoW prioritization, User and Job Stories
+- **UX/UI**: Atomic Design (Frost), Design Tokens, Motion Design, WCAG 2.2 AA
 - **Architecture**: Clean Architecture, Hexagonal, DDD, SOLID, KISS, YAGNI
 - **Security**: OWASP Top 10:2025 (updated with Supply Chain at #3, Exceptional Conditions at #10)
 - **Code Quality**: Clean Code (Martin), Design Patterns (GoF), Code Smells, KISS, YAGNI
@@ -227,17 +234,18 @@ Every prompt is grounded in proven engineering practices:
 |-----------|-----------------|---------------|-------------|
 | **GitHub Copilot** | VS Code, JetBrains, Visual Studio, Xcode, Eclipse | `/flow-prd`, `/flow-rfc`, ... | Reads from `.github/prompts/` |
 | **Cursor** | Cursor, JetBrains (via ACP) | `/flow-prd`, `/flow-rfc`, ... | Reads from `.agent/workflows/` |
-| **Claude Code** | VS Code, JetBrains, Antigravity, Windsurf, Zed, Neovim, Emacs, Claude Desktop, Terminal | `/flow-prd`, `/flow-rfc`, ... | Reads from `.claude/commands/` |
+| **Google Antigravity** | Antigravity | `flow-prd`, `flow-rfc`, ... | Reads from `.agent/skills/` |
+| **Claude Code** | VS Code, JetBrains, Windsurf, Zed, Neovim, Emacs, Claude Desktop, Terminal | `/flow-prd`, `/flow-rfc`, ... | Reads from `.claude/commands/` |
 | **OpenAI Codex CLI** | Terminal | `flow-prd`, `flow-rfc`, ... | Reads from `.agents/skills/` |
 
-All four use the same prompts. Switch assistants or IDEs without changing anything.
+All five use the same prompts. Switch assistants or IDEs without changing anything.
 
 ---
 
 ## FAQ
 
 <details>
-<summary><strong>Do I need to follow all 8 steps for every feature?</strong></summary>
+<summary><strong>Do I need to follow all 9 steps for every feature?</strong></summary>
 <br>
 No. A 3-line bug fix can go straight to <code>/flow-debug</code> > <code>/flow-code</code> > <code>/flow-review</code>. The full cycle is for significant features. Scale the ceremony to the risk.
 </details>
