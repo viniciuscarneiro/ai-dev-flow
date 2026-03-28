@@ -97,9 +97,9 @@ git clone https://github.com/viniciuscarneiro/ai-dev-flow.git /tmp/ai-dev-flow
 git clone https://github.com/viniciuscarneiro/ai-dev-flow.git /tmp/ai-dev-flow && /tmp/ai-dev-flow/setup.sh .
 ```
 
-The setup script copies **56 files** into your project:
+The setup script copies **65 files** into your project:
 - 9 prompts (the methodology)
-- 36 AI assistant wrappers (Copilot + Cursor + Claude Code + Codex)
+- 45 AI assistant wrappers (Copilot + Cursor + Claude Code + Codex + Antigravity)
 - 5 knowledge templates (guidelines, ADRs, architecture, PRDs, assessments)
 - Engineering principles and design principles references
 - Playbook (operating manual)

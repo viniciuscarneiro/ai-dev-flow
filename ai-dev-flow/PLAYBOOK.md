@@ -184,11 +184,12 @@ Each assistant reads from its own location, all pointing to `ai-dev-flow/prompts
 ```
 .github/prompts/flow-*.prompt.md  → GitHub Copilot
 .agent/workflows/flow-*.md        → Cursor
+.agent/skills/flow-*/SKILL.md     → Google Antigravity
 .claude/commands/flow-*.md        → Claude Code
 .agents/skills/flow-*/SKILL.md    → OpenAI Codex
 ```
 
-Edit once in `ai-dev-flow/prompts/`, all four assistants stay in sync.
+Edit once in `ai-dev-flow/prompts/`, all five assistants stay in sync.
 
 ### Convention: `_template.md`
 

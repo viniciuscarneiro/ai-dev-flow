@@ -144,6 +144,13 @@ for d in "$SCRIPT_DIR"/.agents/skills/*/; do
   copy_file "$d/SKILL.md" "$TARGET/.agents/skills/$skill/SKILL.md"
 done
 
+echo "  Antigravity:"
+for d in "$SCRIPT_DIR"/.agent/skills/*/; do
+  [ -d "$d" ] || continue
+  skill="$(basename "$d")"
+  copy_file "$d/SKILL.md" "$TARGET/.agent/skills/$skill/SKILL.md"
+done
+
 echo ""
 
 # ─── Summary ───
