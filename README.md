@@ -285,6 +285,8 @@ Never. It only creates new files. If a file already exists, it skips it.
 
 Contributions are welcome! Whether it's improving prompts, adding new knowledge templates, or fixing documentation.
 
+See [CONTRIBUTING.md](CONTRIBUTING.md) for the command matrix, CI expectations, and pull request checklists.
+
 1. Fork the repo
 2. Create a feature branch
 3. Make your changes

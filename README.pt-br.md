@@ -285,6 +285,8 @@ Nunca. Ele so cria arquivos novos. Se um arquivo ja existe, pula.
 
 Contribuicoes sao bem-vindas! Seja melhorando prompts, adicionando templates de conhecimento, ou corrigindo documentacao.
 
+Veja [CONTRIBUTING.md](CONTRIBUTING.md) para a matriz de comandos, o que o CI valida e checklists de PR.
+
 1. Fork o repo
 2. Crie uma branch de feature
 3. Faca suas mudancas

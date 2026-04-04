@@ -1,0 +1,43 @@
+name: CI
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+
+jobs:
+  markdown-links:
+    name: Markdown link check
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Run lychee
+        uses: lycheeverse/lychee-action@v2
+        with:
+          args: --verbose --no-progress --max-concurrency 2 './**/*.md'
+          fail: true
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
+  setup-smoke:
+    name: setup.sh smoke test
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Install into empty directory
+        run: |
+          set -euo pipefail
+          DEST=$(mktemp -d)
+          bash "$GITHUB_WORKSPACE/setup.sh" "$DEST"
+          test -f "$DEST/ai-dev-flow/PLAYBOOK.md"
+          test -d "$DEST/ai-dev-flow/prompts"
+          test -d "$DEST/ai-dev-flow/work/drafts/analysis"
+          test -f "$DEST/.github/prompts/flow-prd.prompt.md"
+          count=$(find "$DEST" -type f | wc -l | tr -d ' ')
+          if [ "$count" -ne 65 ]; then
+            echo "Expected 65 files created, got $count"
+            find "$DEST" -type f | sort
+            exit 1
+          fi
