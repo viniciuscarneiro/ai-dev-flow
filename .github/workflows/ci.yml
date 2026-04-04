@@ -5,6 +5,13 @@ on:
     branches: [main]
   pull_request:
 
+permissions:
+  contents: read
+
+concurrency:
+  group: ${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: true
+
 jobs:
   markdown-links:
     name: Markdown link check
@@ -15,7 +22,13 @@ jobs:
       - name: Run lychee
         uses: lycheeverse/lychee-action@v2
         with:
-          args: --verbose --no-progress --max-concurrency 2 './**/*.md'
+          args: >
+            --verbose
+            --no-progress
+            --max-concurrency 2
+            --user-agent "Mozilla/5.0 (compatible; ai-dev-flow-ci/1.0; +https://github.com/viniciuscarneiro/ai-dev-flow)"
+            --exclude-path "ai-dev-flow/prompts/**"
+            './**/*.md'
           fail: true
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}

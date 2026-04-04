@@ -40,7 +40,7 @@ Parallel means `/flow-debug` can start anytime. Skipping `/flow-ux` for backend-
 
 Pull requests and pushes to `main` run GitHub Actions (see `.github/workflows/ci.yml`):
 
-- **Markdown link check** using [lychee](https://github.com/lycheeverse/lychee) on all `*.md` files. Add patterns to `.lycheeignore` only when a host blocks bots and the URL is still correct for humans.
+- **Markdown link check** using [lychee](https://github.com/lycheeverse/lychee) on `*.md` files, **excluding** `ai-dev-flow/prompts/` (reference URLs there often block automated clients). Add patterns to `.lycheeignore` when another path still breaks CI but the URL is valid in a browser.
 - **setup.sh smoke test** installs into an empty directory and asserts **65** files, core paths, and `ai-dev-flow/work/drafts/analysis/`.
 
 If you change what `setup.sh` creates, update the smoke test and the README file count in the same PR.
