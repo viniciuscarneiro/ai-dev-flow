@@ -6,9 +6,10 @@ This is the operating manual for AI-assisted development using the AI Dev Flow m
 
 ## The Flow
 
-Feature development follows a 9-step cycle. Each step has a dedicated slash command and produces traceable artifacts.
+Feature development follows a **9-step** lifecycle (`/flow-prd` through `/flow-done`), plus **parallel** commands for onboarding and incidents. The kit exposes **10 slash commands** in total.
 
 ```
+/flow-seed    → Prime knowledge/ (Parallel — recommended before first /flow-prd when knowledge is thin)
 /flow-prd     → What the user needs (Product Requirements + Definition of Done)
 /flow-ux      → How the user experiences it (UX/UI Design Specification)
 /flow-rfc     → Which technical approach (Alternatives, Decision Matrix, Recommendation)
@@ -22,6 +23,7 @@ Feature development follows a 9-step cycle. Each step has a dedicated slash comm
 
 ```mermaid
 graph LR
+    S["/flow-seed"] --> B["/flow-prd"]
     A[Requirement] --> B["/flow-prd"]
     B --> B2["/flow-ux"]
     B2 --> C["/flow-rfc"]
@@ -37,6 +39,17 @@ graph LR
     J[Bug/Error] --> K["/flow-debug"]
     K -->|Fix needed| E
 ```
+
+### Onboarding: Seed — `/flow-seed` (Parallel)
+
+| | |
+|---|---|
+| **Purpose** | Import existing documentation into `ai-dev-flow/knowledge/` safely (no overwrite by default) |
+| **Role** | Technical writer / repository librarian |
+| **Input** | Paths to files or directories, pasted content, or a request to inventory `knowledge/` |
+| **Output** | New files under `ai-dev-flow/knowledge/*/` (optional manifest in `work/drafts/` if requested) |
+| **Key rules** | Never overwrite `_template.md` or existing artifacts without explicit user approval; refuse secrets (`.env`, keys) |
+| **References** | Same directory layout as `setup.sh`; `CONTRIBUTING.md` command matrix |
 
 ### Step 1: PRD — `/flow-prd`
 
@@ -146,7 +159,8 @@ graph LR
 ai-dev-flow/
 ├── PLAYBOOK.md                          # <- You are here
 │
-├── prompts/                             # [Source of Truth] The 9 AI prompts
+├── prompts/                             # [Source of Truth] The 10 AI prompts
+│   ├── flow-seed.md                     # Import docs into knowledge/ (onboarding)
 │   ├── flow-prd.md                      # Product Requirements
 │   ├── flow-ux.md                       # UX/UI Design Specification
 │   ├── flow-rfc.md                      # Request for Comments
@@ -189,7 +203,7 @@ Each assistant reads from its own location, all pointing to `ai-dev-flow/prompts
 .agents/skills/flow-*/SKILL.md    → OpenAI Codex
 ```
 
-Edit once in `ai-dev-flow/prompts/`, all five assistants stay in sync.
+Edit once in `ai-dev-flow/prompts/`, all five assistants stay in sync (including `/flow-seed`).
 
 ### Convention: `_template.md`
 
@@ -255,7 +269,7 @@ Artifacts have a lifecycle: they start as volatile work, get reviewed, and are p
 ## Best Practices
 
 - **Don't skip steps — except `/flow-ux` when there is no UI.** For new features with screens, follow the full cycle. For backend-only work (APIs, jobs, infrastructure, libraries), skip `/flow-ux` and go straight from `/flow-prd` to `/flow-rfc`. For simple bugs, go straight to `/flow-debug` → `/flow-code` → `/flow-review`.
-- **Seed your knowledge base.** Before starting, populate `ai-dev-flow/knowledge/` with existing guidelines, ADRs, and architecture docs. The richer the knowledge base, the better the AI's output.
+- **Seed your knowledge base.** Before the first serious `/flow-prd`, populate `ai-dev-flow/knowledge/` using `/flow-seed` or manual copies. The richer the knowledge base, the better the AI's output. `/flow-prd` uses a soft gate: it suggests seeding when only `_template.md` files exist, but never hard-blocks.
 - **Living Guidelines.** Keep `ai-dev-flow/knowledge/guidelines/` updated as your project evolves. New patterns, new conventions, new ADRs — capture them.
 - **Cleanup.** Periodically archive old work from `ai-dev-flow/work/`. Promote completed artifacts to `knowledge/`.
 - **Versioned Prompts.** Changes to AI behavior should be made in `ai-dev-flow/prompts/`. Discuss with the team and open a PR.

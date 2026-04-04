@@ -39,7 +39,7 @@ AI coding assistants are powerful, but without structure they produce inconsiste
 
 AI Dev Flow is a **methodology kit** that plugs into your existing project. It provides:
 
-- **9 slash commands** that guide AI through a structured SDLC
+- **10 slash commands** that guide AI through a structured SDLC (9-step feature lifecycle plus onboarding and parallel debug)
 - **Shared prompts** that work across GitHub Copilot, Cursor, Claude Code, OpenAI Codex, and Antigravity
 - **A knowledge base** structure where your AI reads project guidelines, ADRs, and architecture docs
 - **Work artifacts** that create a traceable paper trail from PRD to production
@@ -52,6 +52,7 @@ It's not a framework, not a CLI tool, not a SaaS. It's a set of files you copy i
 ## The Flow
 
 ```
+/flow-seed     Prime knowledge/           Import existing docs into knowledge/ (onboarding, recommended before first PRD)
 /flow-prd      Define what to build       Product Requirements + Definition of Done
 /flow-ux       Design the experience      UX/UI Design Specification (Atomic Design, Design Tokens, Motion, WCAG 2.2)
 /flow-rfc      Choose how to build it     Alternatives, Decision Matrix, Recommendation
@@ -65,6 +66,7 @@ It's not a framework, not a CLI tool, not a SaaS. It's a set of files you copy i
 
 ```mermaid
 graph TD
+    S["flow-seed"] --> B["flow-prd"]
     A[Requirement] --> B["flow-prd"]
     B --> B2["flow-ux"]
     B -->|"No UI"| C["flow-rfc"]
@@ -99,9 +101,9 @@ git clone https://github.com/viniciuscarneiro/ai-dev-flow.git /tmp/ai-dev-flow
 git clone https://github.com/viniciuscarneiro/ai-dev-flow.git /tmp/ai-dev-flow && /tmp/ai-dev-flow/setup.sh .
 ```
 
-The setup script copies **65 files** into your project:
-- 9 prompts (the methodology)
-- 45 AI assistant wrappers (Copilot + Cursor + Claude Code + Codex + Antigravity)
+The setup script copies **71 files** into your project:
+- 10 prompts (the methodology)
+- 50 AI assistant wrappers (Copilot + Cursor + Claude Code + Codex + Antigravity)
 - 5 knowledge templates (guidelines, ADRs, architecture, PRDs, assessments)
 - Engineering principles and design principles references
 - Playbook (operating manual)
@@ -111,7 +113,7 @@ The setup script copies **65 files** into your project:
 
 ### Seed Your Knowledge Base (Recommended)
 
-The AI produces better output when it knows your project. Copy existing docs:
+The AI produces better output when it knows your project. Run **`/flow-seed`** with your assistant to import existing Markdown safely (same spirit as setup: no overwrite by default), or copy manually:
 
 ```
 ai-dev-flow/knowledge/
@@ -137,7 +139,8 @@ The AI will:
 2. Analyze the requirement critically
 3. Ask clarifying questions
 4. Generate a structured PRD with Definition of Done
-5. Suggest the next step (`/flow-ux` for UI work, `/flow-rfc` when there is no UI)
+5. If `knowledge/` is still thin, suggest `/flow-seed` or manual docs before deep work
+6. Suggest the next step (`/flow-ux` for UI work, `/flow-rfc` when there is no UI)
 
 ---
 
@@ -149,7 +152,7 @@ The AI will:
 your-project/
 ├── ai-dev-flow/                    Everything lives here
 │   ├── PLAYBOOK.md                 Operating manual
-│   ├── prompts/                    Source of truth (9 prompts)
+│   ├── prompts/                    Source of truth (10 prompts)
 │   ├── knowledge/                  Your project's brain
 │   │   ├── guidelines/             Standards the AI follows
 │   │   ├── adrs/                   Decisions the AI respects
@@ -187,6 +190,7 @@ Artifacts have a lifecycle, from volatile work to permanent knowledge:
 
 ```mermaid
 graph LR
+    K["flow-seed imports"] --> L["knowledge/*"]
     A["flow-prd generates"] --> B["work/specs/feature_prd.md"]
     B -->|"feature shipped"| C["knowledge/prds/feature_prd.md"]
 
@@ -204,6 +208,7 @@ graph LR
 
 | Step | Role | Inspired By | Key Output |
 |------|------|-------------|------------|
+| **Seed** | Librarian / Tech writer | Docs as Code, safe import | Files under `knowledge/` from existing docs |
 | **PRD** | Senior Product Manager | Amazon Working Backwards, MoSCoW | Requirements, User Stories, DoD |
 | **UX** | Senior UX/UI Designer | Atomic Design, Design Tokens, WCAG 2.2 | Design Spec, Component Map, Motion, Accessibility |
 | **RFC** | Staff Engineer | Google Design Docs, Uber RFCs | Decision Matrix, System Design, Recommendation |

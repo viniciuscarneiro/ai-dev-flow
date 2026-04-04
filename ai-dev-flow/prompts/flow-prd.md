@@ -43,6 +43,15 @@ The user will provide one of:
 
 ## Process
 
+### Phase 0: Knowledge base readiness (soft gate)
+
+Before critical analysis, quickly assess `ai-dev-flow/knowledge/`:
+
+1. **Inventory** — In each of `guidelines/`, `adrs/`, `architecture/`, `prds/`, `assessments/`, count files that are **not** `_template.md` and are non-empty.
+2. **If there are no such files** (only templates or empty folders), do **not** block. Tell the user the knowledge base is **thin**: downstream steps work better with real guidelines, ADRs, and architecture context.
+3. **Suggest** running `/flow-seed` to import existing docs, or manually copying material into `knowledge/`, **before** continuing. Ask once: proceed with `/flow-seed`, add docs manually, or continue with the PRD and **mark assumptions** clearly.
+4. If the user chooses to continue without seeding, proceed to Phase 1 and state in the PRD (or in your preamble) that product and engineering context may rely on **explicit assumptions** until `knowledge/` is populated.
+
 ### Phase 1: Critical Analysis (before writing anything)
 
 Do NOT generate the PRD immediately. First, think through:
