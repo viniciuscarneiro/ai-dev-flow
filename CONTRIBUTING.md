@@ -24,6 +24,7 @@ Update these together in the **same pull request** whenever behavior, wording, o
 
 | Command | Step | Role (short) | Default next step |
 |---------|------|--------------|-------------------|
+| `/flow-seed` | Onboarding (parallel) | Import existing docs into `knowledge/` | `/flow-prd` when ready to define work |
 | `/flow-prd` | 1 | Product requirements and DoD | `/flow-ux` if there is a user-facing UI; otherwise `/flow-rfc` |
 | `/flow-ux` | 2 | UX and UI specification | `/flow-rfc` |
 | `/flow-rfc` | 3 | Technical options and recommendation | `/flow-ta` |
@@ -34,14 +35,14 @@ Update these together in the **same pull request** whenever behavior, wording, o
 | `/flow-done` | 8 | Production readiness and go or no-go | Ship or return to `/flow-code` |
 | `/flow-debug` | Parallel | Systematic investigation | `/flow-code` when a fix is needed |
 
-Parallel means `/flow-debug` can start anytime. Skipping `/flow-ux` for backend-only work is documented in `ai-dev-flow/PLAYBOOK.md` and `ai-dev-flow/prompts/flow-ux.md`.
+Parallel means `/flow-debug` and `/flow-seed` can run outside the numbered sequence. Use `/flow-seed` when `knowledge/` is thin (often before the first `/flow-prd`). Skipping `/flow-ux` for backend-only work is documented in `ai-dev-flow/PLAYBOOK.md` and `ai-dev-flow/prompts/flow-ux.md`.
 
 ### Continuous integration
 
 Pull requests and pushes to `main` run GitHub Actions (see `.github/workflows/ci.yml`):
 
 - **Markdown link check** using [lychee](https://github.com/lycheeverse/lychee) on `*.md` files, **excluding** `ai-dev-flow/prompts/` (reference URLs there often block automated clients). `.lycheeignore` lists URLs that are valid for humans but return **403** to CI (for example Claude and OpenAI product homepages linked from the README badges). Add patterns there if a new badge or link starts failing only in automation.
-- **setup.sh smoke test** installs into an empty directory and asserts **65** files, core paths, and `ai-dev-flow/work/drafts/analysis/`.
+- **setup.sh smoke test** installs into an empty directory and asserts **71** files, core paths, and `ai-dev-flow/work/drafts/analysis/`.
 
 If you change what `setup.sh` creates, update the smoke test and the README file count in the same PR.
 
@@ -68,7 +69,7 @@ Use this when you touch README, PLAYBOOK, prompts, wrappers, `setup.sh`, `CONTRI
 - [ ] No-UI path (`PRD` to `RFC`) stays consistent across diagrams, prompts, and PLAYBOOK.
 - [ ] Command naming matches the matrix above (`Validate it` for `/flow-review`, not mixed with `Review it`).
 - [ ] `work/drafts/analysis/` is still reflected wherever `work/` is described.
-- [ ] File count **65** matches `setup.sh` output on a clean target directory.
+- [ ] File count **71** matches `setup.sh` output on a clean target directory.
 
 ### Pull request templates
 

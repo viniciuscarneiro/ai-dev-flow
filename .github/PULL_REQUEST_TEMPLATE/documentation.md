@@ -26,7 +26,7 @@ If behavior changed, describe the new rule (for example no-UI path, debug artifa
 - [ ] English and Portuguese READMEs updated together when the change is user-facing
 - [ ] Command names and step wording match `CONTRIBUTING.md` command matrix
 - [ ] `setup.sh` still never overwrites existing files
-- [ ] File count in READMEs matches `setup.sh` (currently 65 files on a clean install)
+- [ ] File count in READMEs matches `setup.sh` (currently 71 files on a clean install)
 
 ## Links and references
 

@@ -10,4 +10,3 @@ Thumbs.db
 
 # Claude Code personal settings (not part of the template)
 .claude/settings.local.json
-CLAUDE.md
