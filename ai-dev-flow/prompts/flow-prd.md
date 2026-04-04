@@ -6,11 +6,14 @@ This is **step 1 of 9** in the AI Dev Flow cycle.
 
 | Previous | Current | Next |
 |----------|---------|------|
-| — | **PRD** | UX (`/flow-ux`) |
+| — | **PRD** | UX (`/flow-ux`) or RFC (`/flow-rfc`) |
 
 - This is the entry point of the flow. No previous artifacts are required.
 - If existing PRDs are available in `ai-dev-flow/knowledge/prds/`, read them for context and to detect overlap.
-- After the user approves the PRD, suggest running `/flow-ux` to define the user experience and design specification. **Only proceed with explicit user approval.**
+- After the user approves the PRD, suggest the next step based on feature type:
+  - If there is a user-facing interface, suggest `/flow-ux`.
+  - If there is no user-facing interface (API/job/infrastructure/CLI/library), skip UX and suggest `/flow-rfc`.
+  - **Only proceed with explicit user approval.**
 
 ## Role
 

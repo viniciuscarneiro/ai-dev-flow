@@ -6,7 +6,7 @@ This is **step 3 of 9** in the AI Dev Flow cycle.
 
 | Previous | Current | Next |
 |----------|---------|------|
-| UX (`/flow-ux`) | **RFC** | Tech Assessment (`/flow-ta`) |
+| PRD (`/flow-prd`) + UX (`/flow-ux`, when applicable) | **RFC** | Tech Assessment (`/flow-ta`) |
 
 - This prompt works standalone — you don't need to run previous steps.
 - If a PRD exists in `ai-dev-flow/work/specs/`, read it as the primary input.

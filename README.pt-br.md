@@ -67,6 +67,7 @@ Nao e um framework, nao e um CLI, nao e um SaaS. E um conjunto de arquivos que v
 graph TD
     A[Requisito] --> B["flow-prd"]
     B --> B2["flow-ux"]
+    B -->|"Sem UI"| C["flow-rfc"]
     B2 --> C["flow-rfc"]
     C --> D["flow-ta"]
     D --> E["flow-code"]
@@ -136,7 +137,7 @@ A IA vai:
 2. Analisar o requisito criticamente
 3. Fazer perguntas de esclarecimento
 4. Gerar um PRD estruturado com Definition of Done
-5. Sugerir o proximo passo (`/flow-ux`)
+5. Sugerir o proximo passo (`/flow-ux` para features com interface, `/flow-rfc` quando nao houver UI)
 
 ---
 
@@ -158,6 +159,7 @@ seu-projeto/
 │   └── work/                       Artefatos gerados pela IA
 │       ├── specs/                  PRDs, RFCs, TAs ativos
 │       └── drafts/                 Rascunhos de docs, relatorios de debug
+│           └── analysis/           Relatorios de analise de debug
 │
 ├── .github/prompts/                Wrappers GitHub Copilot
 ├── .agent/workflows/               Wrappers Cursor
@@ -191,17 +193,20 @@ graph LR
     D["flow-doc gera"] --> E["work/drafts/feature_doc.md"]
     E -->|"usuario aprova"| F["knowledge/adrs/"]
     E -->|"usuario aprova"| G["knowledge/architecture/"]
+
+    H["flow-debug gera"] --> I["work/drafts/analysis/incident_analysis.md"]
+    I -->|"incidente encerrado + licoes aprovadas"| J["knowledge/guidelines/"]
 ```
 
 ---
 
 ## O que tem em cada Etapa
 
-| Etapa | Role | Inspirado em | Output Principal |
-|-------|------|-------------|-----------------|
+| Etapa | Papel | Inspirado em | Output Principal |
+|-------|-------|-------------|-----------------|
 | **PRD** | PM Senior | Amazon Working Backwards, MoSCoW | Requisitos, User Stories, DoD |
 | **UX** | UX/UI Designer Senior | Atomic Design, Design Tokens, WCAG 2.2 | Design Spec, Component Map, Motion, Acessibilidade |
-| **RFC** | Staff Engineer | Google Design Docs, Uber RFCs | Matriz de Decisao, System Design |
+| **RFC** | Staff Engineer | Google Design Docs, Uber RFCs | Matriz de Decisao, System Design, Recomendacao |
 | **TA** | Principal Engineer | Checklist de 28 categorias | Cenarios BDD, Sequencia de Implementacao |
 | **Code** | Senior Full-Cycle | TDD (Kent Beck), Clean Code, SMURF (Google) | Codigo, Testes, Migrations, Config |
 | **Review** | Staff Reviewer | Google/Microsoft Guidelines, OWASP 2025 | Findings com severidade, validacao DoD |
@@ -218,7 +223,7 @@ Cada prompt e baseado em praticas comprovadas de engenharia:
 - **Produto**: Amazon Working Backwards, MoSCoW, User and Job Stories
 - **UX/UI**: Atomic Design (Frost), Design Tokens, Motion Design, WCAG 2.2 AA
 - **Arquitetura**: Clean Architecture, Hexagonal, DDD, SOLID, KISS, YAGNI
-- **Seguranca**: OWASP Top 10:2025 (atualizado com Supply Chain em #3)
+- **Seguranca**: OWASP Top 10:2025 (atualizado com Supply Chain em #3 e Exceptional Conditions em #10)
 - **Qualidade de Codigo**: Clean Code (Martin), Design Patterns (GoF), Code Smells, KISS, YAGNI
 - **Testes**: TDD (Beck Canon 2023), SMURF Framework (Google 2024), Test Pyramid
 - **Review**: Google Code Review Guidelines, Microsoft Engineering Fundamentals
@@ -279,6 +284,8 @@ Nunca. Ele so cria arquivos novos. Se um arquivo ja existe, pula.
 ## Contribuindo
 
 Contribuicoes sao bem-vindas! Seja melhorando prompts, adicionando templates de conhecimento, ou corrigindo documentacao.
+
+Veja [CONTRIBUTING.md](CONTRIBUTING.md) para a matriz de comandos, o que o CI valida e checklists de PR.
 
 1. Fork o repo
 2. Crie uma branch de feature

@@ -67,6 +67,7 @@ It's not a framework, not a CLI tool, not a SaaS. It's a set of files you copy i
 graph TD
     A[Requirement] --> B["flow-prd"]
     B --> B2["flow-ux"]
+    B -->|"No UI"| C["flow-rfc"]
     B2 --> C["flow-rfc"]
     C --> D["flow-ta"]
     D --> E["flow-code"]
@@ -136,7 +137,7 @@ The AI will:
 2. Analyze the requirement critically
 3. Ask clarifying questions
 4. Generate a structured PRD with Definition of Done
-5. Suggest the next step (`/flow-ux`)
+5. Suggest the next step (`/flow-ux` for UI work, `/flow-rfc` when there is no UI)
 
 ---
 
@@ -158,6 +159,7 @@ your-project/
 │   └── work/                       AI-generated artifacts
 │       ├── specs/                  Active PRDs, RFCs, TAs
 │       └── drafts/                 Documentation drafts, debug reports
+│           └── analysis/           Debug analysis reports
 │
 ├── .github/prompts/                GitHub Copilot wrappers
 ├── .agent/workflows/               Cursor wrappers
@@ -191,6 +193,9 @@ graph LR
     D["flow-doc generates"] --> E["work/drafts/feature_doc.md"]
     E -->|"user approves"| F["knowledge/adrs/"]
     E -->|"user approves"| G["knowledge/architecture/"]
+
+    H["flow-debug generates"] --> I["work/drafts/analysis/incident_analysis.md"]
+    I -->|"incident closed + lessons approved"| J["knowledge/guidelines/"]
 ```
 
 ---
@@ -279,6 +284,8 @@ Never. It only creates new files. If a file already exists, it skips it.
 ## Contributing
 
 Contributions are welcome! Whether it's improving prompts, adding new knowledge templates, or fixing documentation.
+
+See [CONTRIBUTING.md](CONTRIBUTING.md) for the command matrix, CI expectations, and pull request checklists.
 
 1. Fork the repo
 2. Create a feature branch
