@@ -218,6 +218,10 @@ Artifacts have a lifecycle: they start as volatile work, get reviewed, and are p
                           ↓ (user approves promotion)
                       knowledge/adrs/NNN-decision.md
                       knowledge/architecture/module.md
+
+/flow-debug generates → work/drafts/analysis/[CONTEXT]_analysis.md
+                          ↓ (incident closed + lessons approved)
+                      knowledge/guidelines/[incident-learning].md (optional)
 ```
 
 **Rule:** Promotion from `work/` to `knowledge/` always requires explicit user approval. The AI never moves artifacts automatically.
