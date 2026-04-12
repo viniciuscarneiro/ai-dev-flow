@@ -18,7 +18,7 @@ Update these together in the **same pull request** whenever behavior, wording, o
 - `ai-dev-flow/PLAYBOOK.md`
 - `README.md` and `README.pt-br.md` (for user-facing flow and counts)
 - All wrapper trees: `.github/prompts/`, `.agent/workflows/`, `.agent/skills/`, `.claude/commands/`, `.agents/skills/`
-- `setup.sh` if install steps, file count, or printed next-steps change
+- `setup.sh` if install steps, file count, or printed next-steps change (keep `EXPECTED_FILE_COUNT` in `setup.sh` aligned with what a clean install creates; CI reads it)
 
 ### Command matrix (source of truth for ordering)
 
@@ -42,9 +42,9 @@ Parallel means `/flow-debug` and `/flow-seed` can run outside the numbered seque
 Pull requests and pushes to `main` run GitHub Actions (see `.github/workflows/ci.yml`):
 
 - **Markdown link check** using [lychee](https://github.com/lycheeverse/lychee) on `*.md` files, **excluding** `ai-dev-flow/prompts/` (reference URLs there often block automated clients). `.lycheeignore` lists URLs that are valid for humans but return **403** to CI (for example Claude and OpenAI product homepages linked from the README badges). Add patterns there if a new badge or link starts failing only in automation.
-- **setup.sh smoke test** installs into an empty directory and asserts **71** files, core paths, and `ai-dev-flow/work/drafts/analysis/`.
+- **setup.sh smoke test** installs into an empty directory, reads **`EXPECTED_FILE_COUNT`** from `setup.sh`, asserts that many files, core paths, and `ai-dev-flow/work/drafts/analysis/`.
 
-If you change what `setup.sh` creates, update the smoke test and the README file count in the same PR.
+If you change what `setup.sh` creates, bump **`EXPECTED_FILE_COUNT`**, update the README file count in both languages, and adjust CI expectations in the same PR.
 
 ### Development workflow
 
@@ -69,7 +69,7 @@ Use this when you touch README, PLAYBOOK, prompts, wrappers, `setup.sh`, `CONTRI
 - [ ] No-UI path (`PRD` to `RFC`) stays consistent across diagrams, prompts, and PLAYBOOK.
 - [ ] Command naming matches the matrix above (`Validate it` for `/flow-review`, not mixed with `Review it`).
 - [ ] `work/drafts/analysis/` is still reflected wherever `work/` is described.
-- [ ] File count **71** matches `setup.sh` output on a clean target directory.
+- [ ] **`EXPECTED_FILE_COUNT`** in `setup.sh` matches a clean install (`find` on a fresh target) and both READMEs.
 
 ### Pull request templates
 

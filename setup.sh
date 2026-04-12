@@ -7,8 +7,36 @@ set -euo pipefail
 # Safe: never overwrites existing files.
 # ─────────────────────────────────────────────
 
-VERSION="3.0.0"
+VERSION="3.0.1"
+# Single source of truth for README, CONTRIBUTING, and CI (setup-smoke). Bump when the install set changes.
+EXPECTED_FILE_COUNT=71
+
 SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
+
+if [[ "${1:-}" == "-h" || "${1:-}" == "--help" ]]; then
+  cat <<EOF
+AI Dev Flow — setup.sh
+
+Usage:
+  ./setup.sh /path/to/your/application/project
+  ./setup.sh .                    # install into the current directory (must be your app repo root)
+
+Options:
+  -h, --help    Show this help
+
+What it does:
+  Copies prompts, knowledge templates, playbook, and assistant wrappers into the target.
+  Never overwrites existing files (safe to re-run).
+
+Expected first-time install: ${EXPECTED_FILE_COUNT} new files. If the target already contains
+ai-dev-flow/, files are skipped. Point the script at your application repository, not at a
+clone of the ai-dev-flow methodology repo unless you mean to merge kits.
+
+Repository: https://github.com/viniciuscarneiro/ai-dev-flow
+EOF
+  exit 0
+fi
+
 TARGET="${1:-.}"
 TARGET="$(cd "$TARGET" 2>/dev/null && pwd || echo "$TARGET")"
 
@@ -43,6 +71,13 @@ fi
 echo -e "Source: ${CYAN}${SCRIPT_DIR}${NC}"
 echo -e "Target: ${BOLD}${TARGET}${NC}"
 echo ""
+
+if [ -f "$TARGET/ai-dev-flow/PLAYBOOK.md" ]; then
+  echo -e "${YELLOW}Note:${NC} This directory already contains ${BOLD}ai-dev-flow/${NC}."
+  echo -e "      Existing files are never overwritten, so re-runs may skip everything."
+  echo -e "      To install into a different app, pass that repo path: ${BOLD}./setup.sh /path/to/your-app${NC}"
+  echo ""
+fi
 
 # ─── Helper: copy file safely ───────────────
 copy_file() {
@@ -157,6 +192,12 @@ echo ""
 echo "────────────────────────────────────"
 echo -e "${BOLD}Done!${NC} ${GREEN}${created} files created${NC}, ${YELLOW}${skipped} skipped${NC}."
 echo ""
+
+if [ "$skipped" -eq 0 ] && [ "$created" -ne "$EXPECTED_FILE_COUNT" ]; then
+  echo -e "${RED}Error:${NC} First-time install should create exactly ${EXPECTED_FILE_COUNT} files, got ${created}."
+  echo -e "      The methodology package in ${CYAN}${SCRIPT_DIR}${NC} may be incomplete or out of sync."
+  exit 1
+fi
 
 if [ ${#skipped_files[@]} -gt 0 ]; then
   echo -e "${YELLOW}Skipped files (already exist):${NC}"

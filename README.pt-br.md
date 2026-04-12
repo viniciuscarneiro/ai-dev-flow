@@ -111,6 +111,10 @@ O script copia **71 arquivos** no seu projeto:
 
 **Nunca sobrescreve.** Rode novamente com seguranca, so cria o que esta faltando.
 
+**Erro comum:** clonar este repositorio e rodar `./setup.sh` sem argumentos **dentro do clone** aponta para o **proprio repo da metodologia**. Esse diretorio ja contem `ai-dev-flow/`, entao os **71** arquivos sao ignorados e parece que nada aconteceu. Corrija: va ate a **raiz do repositorio da sua aplicacao** e rode `/caminho/do/clone/setup.sh .`, ou passe o caminho explicito: `./setup.sh /caminho/da/sua-app`.
+
+Rode `./setup.sh --help` para uso e a contagem esperada atual (`EXPECTED_FILE_COUNT` em `setup.sh`).
+
 ### Alimente sua Base de Conhecimento (Recomendado)
 
 A IA produz output melhor quando conhece seu projeto. Rode **`/flow-seed`** com o assistente para importar Markdown com seguranca (sem sobrescrever por padrao), ou copie manualmente:
