@@ -42,15 +42,18 @@ jobs:
       - name: Install into empty directory
         run: |
           set -euo pipefail
+          EXPECTED_FROM_SCRIPT=$(grep '^EXPECTED_FILE_COUNT=' "$GITHUB_WORKSPACE/setup.sh" | head -1 | cut -d= -f2 | tr -d ' ')
+          test -n "$EXPECTED_FROM_SCRIPT"
           DEST=$(mktemp -d)
           bash "$GITHUB_WORKSPACE/setup.sh" "$DEST"
           test -f "$DEST/ai-dev-flow/PLAYBOOK.md"
           test -d "$DEST/ai-dev-flow/prompts"
+          test -f "$DEST/ai-dev-flow/prompts/flow-seed.md"
           test -d "$DEST/ai-dev-flow/work/drafts/analysis"
           test -f "$DEST/.github/prompts/flow-prd.prompt.md"
           count=$(find "$DEST" -type f | wc -l | tr -d ' ')
-          if [ "$count" -ne 71 ]; then
-            echo "Expected 71 files created, got $count"
+          if [ "$count" -ne "$EXPECTED_FROM_SCRIPT" ]; then
+            echo "Expected EXPECTED_FILE_COUNT=$EXPECTED_FROM_SCRIPT from setup.sh, got $count"
             find "$DEST" -type f | sort
             exit 1
           fi

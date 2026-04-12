@@ -111,6 +111,10 @@ The setup script copies **71 files** into your project:
 
 **It never overwrites.** Run it again safely, it only creates what's missing.
 
+**Common mistake:** cloning this repository and running `./setup.sh` with no arguments from inside the clone targets the **methodology repo itself**. That directory already contains `ai-dev-flow/`, so all **71** paths are skipped and nothing new appears. Fix: `cd` to **your application’s repository root** first, then run `/path/to/cloned/setup.sh .`, or pass the app path explicitly: `./setup.sh /path/to/your-app`.
+
+Run `./setup.sh --help` for usage and the current expected file count (`EXPECTED_FILE_COUNT` in `setup.sh`).
+
 ### Seed Your Knowledge Base (Recommended)
 
 The AI produces better output when it knows your project. Run **`/flow-seed`** with your assistant to import existing Markdown safely (same spirit as setup: no overwrite by default), or copy manually:
